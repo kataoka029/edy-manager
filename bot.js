@@ -21,7 +21,7 @@ const handleEvent = async (event) => {
 
 const webhookRouter = express.Router();
 webhookRouter.post("/", line.middleware(config), (req, res) => {
-  console.log(req.body.events); // can see by "heroku logs --tail"
+  console.log(req.body); // can see by "heroku logs --tail"
   Promise.all(req.body.events.map(handleEvent)).then((result) =>
     res.json(result)
   );
