@@ -5,6 +5,9 @@
   "repository": "https://github.com/kataoka029/edy-bot.git",
   "author": "kataoka029 <kataoka029@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
     "dotenv": "^8.2.0",

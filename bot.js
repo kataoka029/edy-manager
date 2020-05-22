@@ -1,5 +1,4 @@
-// BASIC SETTING
-const express = require("express");
+// LINEの基本的な設定
 const line = require("@line/bot-sdk");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -7,10 +6,9 @@ const config = {
   channelSecret: process.env.SECRET_KEY,
   channelAccessToken: process.env.ACCESS_TOKEN,
 };
-
-// BOT
 const client = new line.Client(config);
 
+// ボット
 const handleEvent = async (event) => {
   if (event.type !== "message" || event.message.type !== "text") {
     return Promise.resolve(null);
@@ -21,12 +19,6 @@ const handleEvent = async (event) => {
   });
 };
 
-const webhookRouter = express.Router();
-webhookRouter.post("/", line.middleware(config), (req, res) => {
-  console.log(req.body.events);
-  Promise.all(req.body.events.map(handleEvent)).then((result) =>
-    res.json(result)
-  );
-});
-
-module.exports = { webhookRouter };
+// webhookRouter.jsで使う
+const lineMiddleware = line.middleware(config);
+module.exports = { handleEvent, lineMiddleware };
