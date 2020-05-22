@@ -5,13 +5,13 @@ const morgan = require("morgan");
 const dotenv = require("dotenv");
 dotenv.config();
 
-// DB
-const { client } = require("./db/config.js");
-client.connect();
-client.query("SELECT * FROM messages", (err, res) => {
-  console.log(err, res.rows);
-  client.end();
-});
+// // DB
+// const { client } = require("./db/config.js");
+// client.connect();
+// client.query("SELECT * FROM messages", (err, res) => {
+//   console.log(err, res.rows);
+//   client.end();
+// });
 
 // APIのルーティング
 const { webhookRouter } = require("./routers/webhookRouter.js");
