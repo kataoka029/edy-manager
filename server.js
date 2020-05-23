@@ -2,21 +2,17 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-const dotenv = require("dotenv");
-dotenv.config();
 
 // // DB
-// const { client } = require("./db/config.js");
-// client.connect();
-// client.query("SELECT * FROM messages", (err, res) => {
-//   console.log(err, res.rows);
-//   client.end();
-// });
+// const dotenv = require("dotenv");
+// dotenv.config();
+// const config = require("./knexfile.js").development;
+// const knex = require("knex")(config);
 
 // APIのルーティング
 const { webhookRouter } = require("./routers/webhookRouter.js");
-const { messagesRouter } = require("./routers/apiRouters/messagesRouter");
-const { usersRouter } = require("./routers/apiRouters/usersRouter");
+const { messagesRouter } = require("./routers/apiRouters/messagesRouter.js");
+const { usersRouter } = require("./routers/apiRouters/usersRouter.js");
 app.use(morgan("dev"));
 app.use("/webhook", webhookRouter);
 app.use("/api/messages", messagesRouter);
