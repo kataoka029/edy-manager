@@ -25,9 +25,10 @@ webhookRouter.post("/", lineMiddleware, async (req, res) => {
   // EDYからの返事をテーブルにインサート
   const replyEvents = _.cloneDeep(events);
   const replyMessage = handleReply(events[0]);
-  replyEvents[0].source.userId = "edy";
+  replyEvents[0].replyToken = "_";
+  replyEvents[0].source.userId = "_";
   replyEvents[0].source.type = "edy";
-  replyEvents[0].message.id = "edy";
+  replyEvents[0].message.id = "_";
   replyEvents[0].message.type = replyMessage.type;
   replyEvents[0].message.text = replyMessage.text;
   fetch(`${url}/api/messages`, {
