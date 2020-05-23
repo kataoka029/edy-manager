@@ -8,6 +8,6 @@ rootRouter.use("/api/messages", require("./api/messagesRouter.js"));
 rootRouter.use("/api/users", require("./api/usersRouter.js"));
 
 // 表示系のルーティング
-rootRouter.get("/", (req, res) => res.render("./index.ejs"));
+rootRouter.get("/", (req, res) => res.render("index.html"));
 
 module.exports = rootRouter;

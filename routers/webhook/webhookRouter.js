@@ -3,12 +3,13 @@ const express = require("express");
 const { handleReply, handleEvent, lineMiddleware } = require("../../bot.js");
 const fetch = require("node-fetch");
 const _ = require("lodash");
+const url = "https://84b52281.ngrok.io";
 
 const webhookRouter = express.Router();
 webhookRouter.post("/", lineMiddleware, async (req, res) => {
   // 相手からのメッセージをテーブルにインサート
   const events = req.body.events;
-  fetch("https://8fc349aa.ngrok.io/api/messages", {
+  fetch(`${url}/api/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -24,10 +25,12 @@ webhookRouter.post("/", lineMiddleware, async (req, res) => {
   // EDYからの返事をテーブルにインサート
   const replyEvents = _.cloneDeep(events);
   const replyMessage = handleReply(events[0]);
+  replyEvents[0].source.userId = "edy";
   replyEvents[0].source.type = "edy";
+  replyEvents[0].message.id = "edy";
   replyEvents[0].message.type = replyMessage.type;
   replyEvents[0].message.text = replyMessage.text;
-  fetch("https://8fc349aa.ngrok.io/api/messages", {
+  fetch(`${url}/api/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
