@@ -3,11 +3,10 @@ const knex = require("knex")(config);
 
 const createMessage = (req, res) => {
   const event = req.body[0];
-  console.log(event.message.text);
   // thenはとりあえず必要らしい
   knex("messages")
     .insert({
-      user_id: 9999,
+      user_id: 1,
       line_type: event.type,
       line_reply_token: event.replyToken,
       line_user_id: event.source.userId,

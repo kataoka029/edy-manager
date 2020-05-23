@@ -1,6 +1,7 @@
+// "/api/messages"へのアクセス担当
+
 const express = require("express");
 
-// "/api/messages"へのアクセス担当
 const {
   getAllMessages,
   getMessagesByUser,
