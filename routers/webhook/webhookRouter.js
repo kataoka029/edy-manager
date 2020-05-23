@@ -1,5 +1,6 @@
+// "/webhook"へのアクセス担当
 const express = require("express");
-const { handleEvent, lineMiddleware } = require("../bot.js");
+const { handleEvent, lineMiddleware } = require("../../bot.js");
 const fetch = require("node-fetch");
 
 const webhookRouter = express.Router();
@@ -21,4 +22,4 @@ webhookRouter.post("/", lineMiddleware, (req, res) => {
   );
 });
 
-module.exports = { webhookRouter };
+module.exports = webhookRouter;

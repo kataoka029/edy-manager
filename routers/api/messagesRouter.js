@@ -1,4 +1,6 @@
 const express = require("express");
+
+// "/api/messages"へのアクセス担当
 const {
   getAllMessages,
   getMessagesByUser,
@@ -10,4 +12,4 @@ messagesRouter.get("/", getAllMessages);
 messagesRouter.get("/:id", getMessagesByUser);
 messagesRouter.post("/", createMessage);
 
-module.exports = { messagesRouter };
+module.exports = messagesRouter;
