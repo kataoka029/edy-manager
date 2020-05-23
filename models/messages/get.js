@@ -1,10 +1,19 @@
 const config = require("../../knexfile.js").development;
 const knex = require("knex")(config);
 
-const getAllMessgess = (req, res) => {
+const getAllMessages = (req, res) => {
   knex("messages")
     .select()
-    .then((messages) => res.send(messages));
+    .then((messages) => res.send(messages))
+    .catch((err) => res.status(400).send(err.message));
 };
 
-module.exports = getAllMessgess;
+const getMessagesByUser = (req, res) => {
+  knex("messages")
+    .where({ user_id: req.params.id })
+    .select()
+    .then((messages) => res.send(messages))
+    .catch((err) => res.status(400).send(err.message));
+};
+
+module.exports = { getAllMessages, getMessagesByUser };

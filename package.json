@@ -7,8 +7,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon server.js",
-    "migrate": "knex migrate:latest --knexfile ./knexfile.js",
-    "rollback": "knex migrate:rollback --knexfile ./knexfile.js "
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
   },
   "dependencies": {
     "@line/bot-sdk": "^6.8.4",
@@ -17,6 +18,7 @@
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "morgan": "^1.10.0",
+    "node-fetch": "^2.6.0",
     "nodemon": "^2.0.4",
     "pg": "^8.2.1"
   }

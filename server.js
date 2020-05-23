@@ -10,6 +10,8 @@ const morgan = require("morgan");
 // const knex = require("knex")(config);
 
 // APIのルーティング
+app.use("/api", express.json());
+
 const { webhookRouter } = require("./routers/webhookRouter.js");
 const { messagesRouter } = require("./routers/apiRouters/messagesRouter.js");
 const { usersRouter } = require("./routers/apiRouters/usersRouter.js");
