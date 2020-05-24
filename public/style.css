@@ -3,6 +3,7 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* HEADER */
 header {
   background-color: #336b87;
   display: flex;
@@ -10,7 +11,7 @@ header {
   justify-content: space-between;
   position: fixed;
   text-align: center;
-  top: 0px;
+  top: 0;
   width: 100%;
 }
 
@@ -37,8 +38,8 @@ nav ul.menu li {
   margin-left: 60px;
 }
 
+/* THREE COLUMNS */
 main {
-  background-color: #f5f5f5;
   height: calc(100vh - 50px);
   margin: 50px auto 0;
   max-width: 1400px;
@@ -49,12 +50,18 @@ div.container {
   display: flex;
 }
 
-/* ユーザー一覧 */
-
+/* LEFT & RIGHT COLUMNS */
 div.left-container {
   background-color: #ffffff;
   height: 100vh;
   padding: 20px 30px;
+  width: 25%;
+}
+
+div.right-container {
+  background-color: #ffffff;
+  height: 100vh;
+  padding: 20px 50px;
   width: 25%;
 }
 
@@ -64,56 +71,96 @@ section.under-construction {
 }
 
 section.under-construction p {
+  font-size: 14px;
   line-height: 1.4;
   margin: 200px auto 0;
   max-width: 220px;
+  min-width: 160px;
 }
 
 section.under-construction img {
-  margin-top: 80px;
-  max-width: 220px;
   border-radius: 50%;
+  margin-top: 80px;
+  max-width: 180px;
+  width: 100%;
 }
 
-/* チャット */
+/* CENTER COLUMN - CONTAINER */
 div.center-container {
   background-color: #ffffff;
   border-left: 1px solid #f5f5f5;
   border-right: 1px solid #f5f5f5;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 210px);
   overflow: scroll;
-  padding: 20px 30px;
+  position: relative;
   width: 50%;
 }
 
+div.messages-container {
+  padding: 50px 50px;
+}
+
+/* CENTER COLUMN - CHAT */
 div.chat {
   background-color: #ffffff;
   border-radius: 8px;
   font-size: 14px;
-  line-height: 1.4;
-  margin-bottom: 20px;
-  max-width: 60%;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 65%;
   padding: 20px;
+}
+
+div.chat:last-child {
+  margin-bottom: 0px;
 }
 
 div.left-chat {
   background-color: #f5f5f5;
   margin-right: auto;
-  margin-bottom: 10px;
   padding: 20px;
+  position: relative;
+}
+
+div.left-chat:before {
+  border-color: transparent #f5f5f5;
+  border-style: solid;
+  border-width: 10px 10px 10px 0;
+  content: "";
+  display: block;
+  left: -10px;
+  margin-top: -10px;
+  position: absolute;
+  top: 50%;
 }
 
 div.right-chat {
   background-color: #f0fbf0;
-  margin-bottom: 10px;
   margin-left: auto;
   padding: 20px;
+  position: relative;
 }
 
-/* ユーザー情報 */
-div.right-container {
-  background-color: #ffffff;
-  height: 100vh;
-  padding: 20px 50px;
-  width: 25%;
+div.right-chat:before {
+  border-color: transparent #f0fbf0;
+  border-style: solid;
+  border-width: 10px 0 10px 10px;
+  content: "";
+  display: block;
+  margin-top: -10px;
+  position: absolute;
+  right: -10px;
+  top: 50%;
+}
+
+/* CENTER COLUMN - INPUT */
+div.edy-input {
+  background-color: #90afc5;
+  bottom: 0;
+  height: 160px;
+  max-width: 619px;
+  position: fixed;
+  width: calc(50% - 80px);
 }

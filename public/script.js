@@ -1,8 +1,9 @@
 const leftContainer = document.querySelector("div.left-container");
-const centerContainer = document.querySelector("div.center-container");
+const messagesContainer = document.querySelector("div.messages-container");
 const rightContainer = document.querySelector("div.right-container");
+const url = "https://8a6e2f12.ngrok.io";
 
-fetch("https://84b52281.ngrok.io/api/messages")
+fetch(`${url}/api/messages`)
   .then((res) => res.json())
   .then((messages) => {
     for (const message of messages) {
@@ -14,6 +15,6 @@ fetch("https://84b52281.ngrok.io/api/messages")
         div.classList.add("right-chat");
       }
       div.innerHTML = message.line_message_text;
-      centerContainer.appendChild(div);
+      messagesContainer.appendChild(div);
     }
   });
