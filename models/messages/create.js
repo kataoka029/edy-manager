@@ -20,4 +20,4 @@ const createMessage = (req, res) => {
   res.end();
 };
 
-module.exports = { createMessage };
+module.exports = createMessage;

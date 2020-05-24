@@ -3,7 +3,7 @@ const messagesContainer = document.querySelector("div.messages-container");
 const rightContainer = document.querySelector("div.right-container");
 const url = "https://300af617.ngrok.io/";
 
-fetch(`${url}/api/messages`)
+fetch(`${url}/api/messages?u=1`)
   .then((res) => res.json())
   .then((messages) => {
     for (const message of messages) {
