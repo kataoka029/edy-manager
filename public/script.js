@@ -3,6 +3,7 @@ const messagesContainer = document.querySelector("div.messages-container");
 const rightContainer = document.querySelector("div.right-container");
 const url = "https://300af617.ngrok.io/";
 
+// あるユーザーIDのメッセージを取得する
 fetch(`${url}/api/messages?u=1`)
   .then((res) => res.json())
   .then((messages) => {
@@ -18,3 +19,5 @@ fetch(`${url}/api/messages?u=1`)
       messagesContainer.appendChild(div);
     }
   });
+
+// あるユーザーにメッセージを送信する
