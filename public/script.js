@@ -1,6 +1,6 @@
-const leftContainer = document.querySelector("div.left-container");
 const messagesContainer = document.querySelector("div.messages-container");
-const rightContainer = document.querySelector("div.right-container");
+const replyButton = document.querySelector("a.reply");
+const edyInput = document.querySelector("div.edy-input div.text");
 const url = "https://300af617.ngrok.io/";
 
 // あるユーザーIDのメッセージを取得する
@@ -21,3 +21,6 @@ fetch(`${url}/api/messages?u=1`)
   });
 
 // あるユーザーにメッセージを送信する
+replyButton.addEventListener("click", () => {
+  console.log(`You input: ${edyInput.innerText}`);
+});

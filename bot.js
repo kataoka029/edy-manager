@@ -37,15 +37,19 @@ const createReplyMessage = (event) => {
 
 // 相手に返事
 bot.createReply = async (req, res) => {
-  const events = req.body.events;
-  const handleEvent = (event) => {
-    if (event.type !== "message" || event.message.type !== "text") {
-      return Promise.resolve(null);
-    }
-    const replyMessage = createReplyMessage(event);
-    return client.replyMessage(event.replyToken, replyMessage);
-  };
-  await Promise.all(events.map(handleEvent)).then((result) => res.json(result));
+  const event = req.body.events[0];
+  // const handleEvent = (event) => {
+  //   if (event.type !== "message" || event.message.type !== "text") {
+  //     return Promise.resolve(null);
+  //   }
+  //   const replyMessage = createReplyMessage(event);
+  //   return client.replyMessage(event.replyToken, replyMessage);
+  // };
+  // await Promise.all(events.map(handleEvent)).then((result) => res.json(result));
+  const replyMessage = createReplyMessage(event);
+  // console.log(event.replyToken);
+
+  await client.replyMessage(event.replyToken, replyMessage);
 };
 
 // こちらからのメッセージをDBに追加

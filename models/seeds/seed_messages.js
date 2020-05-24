@@ -41,31 +41,6 @@ exports.seed = function (knex) {
           created_at: "2020-05-24 05:33:57.292595+00",
           updated_at: "2020-05-24 05:33:57.292595+00",
         },
-        {
-          user_id: 1,
-          line_type: "message",
-          line_reply_token: "9e3711bc182f41d6b5461f73b6fe897e",
-          line_user_id: "Uf42bb47c877c9e5543ca4eda7661e142",
-          line_user_type: "user",
-          line_message_id: "12016981118658",
-          line_message_type: "text",
-          line_message_text:
-            "早速のご返信ありがとうございます🧡もう1つ質問してもいいですか？",
-          created_at: "2020-05-24 05:33:57.292596+00",
-          updated_at: "2020-05-24 05:33:57.292596+00",
-        },
-        {
-          user_id: 1,
-          line_type: "message",
-          line_reply_token: "_",
-          line_user_id: "_",
-          line_user_type: "edy",
-          line_message_id: "_",
-          line_message_type: "text",
-          line_message_text: "はい、どうされましたか？",
-          created_at: "2020-05-24 05:33:57.292597+00",
-          updated_at: "2020-05-24 05:33:57.292597+00",
-        },
       ]);
     });
 };

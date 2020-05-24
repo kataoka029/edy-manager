@@ -179,14 +179,17 @@ span.material-icons {
 }
 
 a.mood {
+  cursor: pointer;
   margin-left: 30px;
 }
 
 a.attachment {
+  cursor: pointer;
   margin-left: 10px;
 }
 
 a.reply {
+  cursor: pointer;
   margin-left: auto;
   margin-right: 30px;
 }
