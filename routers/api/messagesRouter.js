@@ -1,7 +1,4 @@
-// "/api/messages"へのアクセス担当
-
 const express = require("express");
-
 const getMessages = require("../../models/messages/get.js");
 const createMessage = require("../../models/messages/create.js");
 

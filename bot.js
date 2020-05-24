@@ -1,4 +1,4 @@
-// LINEの基本的な設定
+// ボットの初期設定
 const line = require("@line/bot-sdk");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -7,14 +7,15 @@ const config = {
   channelAccessToken: process.env.ACCESS_TOKEN,
 };
 const client = new line.Client(config);
-
-const fetch = require("node-fetch");
-const _ = require("lodash");
-const url = "https://300af617.ngrok.io/";
 const bot = {};
+const _ = require("lodash");
 
-// 相手からのメッセージを処理し、DBに追加
-bot.insertMessageIntoTable = (req, res) => {
+// DBとのやりとりのための設定
+const fetch = require("node-fetch");
+const url = "https://300af617.ngrok.io/";
+
+// 相手からのメッセージをDBに追加
+bot.insertMessage = (req, res) => {
   const events = req.body.events;
   fetch(`${url}/api/messages`, {
     method: "POST",
@@ -25,16 +26,16 @@ bot.insertMessageIntoTable = (req, res) => {
   });
 };
 
-// リプライメッセージオブジェクトをつくる
+// リプライオブジェクトを作成
 const createReplyMessage = (event) => {
-  const replyMessage = {
+  const text = event.message.text;
+  return {
     type: "text",
-    text: `「${event.message.text}」ですね。申し訳ないのですが、言葉の意味がよく分かりません😰なるべく早く担当からご連絡させていただきますので、少々お待ちください🙇‍♀️`,
+    text: `「${text}」ですね。申し訳ないのですが、言葉の意味がよく分かりません😰なるべく早く担当からご連絡させていただきますので、少々お待ちください🙇‍♀️`,
   };
-  return replyMessage;
 };
 
-// 相手のLINEに返事
+// 相手に返事
 bot.createReply = async (req, res) => {
   const events = req.body.events;
   const handleEvent = (event) => {
@@ -47,8 +48,8 @@ bot.createReply = async (req, res) => {
   await Promise.all(events.map(handleEvent)).then((result) => res.json(result));
 };
 
-// こちらからのメッセージを処理し、DBに追加
-bot.insertReplyIntoTable = (req, res) => {
+// こちらからのメッセージをDBに追加
+bot.insertReply = (req, res) => {
   const events = req.body.events;
   const replyEvents = _.cloneDeep(events);
   const replyMessage = createReplyMessage(events[0]);
@@ -67,7 +68,5 @@ bot.insertReplyIntoTable = (req, res) => {
   });
 };
 
-// webhookRouter.jsで使う
 bot.lineMiddleware = line.middleware(config);
-
 module.exports = bot;
