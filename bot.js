@@ -7,8 +7,8 @@ const config = {
   channelAccessToken: process.env.ACCESS_TOKEN,
 };
 const client = new line.Client(config);
-const bot = {};
 const _ = require("lodash");
+const bot = {};
 
 // DBとのやりとりのための設定
 const fetch = require("node-fetch");
@@ -35,20 +35,10 @@ const createReplyMessage = (event) => {
   };
 };
 
-// 相手に返事
+// 相手に返事（replyMessageを配列にすれば複数送信可能）
 bot.createReply = async (req, res) => {
   const event = req.body.events[0];
-  // const handleEvent = (event) => {
-  //   if (event.type !== "message" || event.message.type !== "text") {
-  //     return Promise.resolve(null);
-  //   }
-  //   const replyMessage = createReplyMessage(event);
-  //   return client.replyMessage(event.replyToken, replyMessage);
-  // };
-  // await Promise.all(events.map(handleEvent)).then((result) => res.json(result));
   const replyMessage = createReplyMessage(event);
-  // console.log(event.replyToken);
-
   await client.replyMessage(event.replyToken, replyMessage);
 };
 
@@ -58,7 +48,7 @@ bot.insertReply = (req, res) => {
   const replyEvents = _.cloneDeep(events);
   const replyMessage = createReplyMessage(events[0]);
   replyEvents[0].replyToken = "_";
-  replyEvents[0].source.userId = "Uf42bb47c877c9e5543ca4eda7661e142";
+  replyEvents[0].source.userId = "_";
   replyEvents[0].source.type = "edy";
   replyEvents[0].message.id = "_";
   replyEvents[0].message.type = replyMessage.type;
@@ -72,5 +62,6 @@ bot.insertReply = (req, res) => {
   });
 };
 
+// bot.client = client;
 bot.lineMiddleware = line.middleware(config);
 module.exports = bot;

@@ -1,6 +1,6 @@
 const messagesContainer = document.querySelector("div.messages-container");
+const edyInputText = document.querySelector("div.edy-input div.text");
 const replyButton = document.querySelector("a.reply");
-const edyInput = document.querySelector("div.edy-input div.text");
 const url = "https://300af617.ngrok.io/";
 
 // あるユーザーIDのメッセージを取得する
@@ -20,7 +20,28 @@ fetch(`${url}/api/messages?u=1`)
     }
   });
 
-// あるユーザーにメッセージを送信する
+// DBには入るけど、LINEには送れていない
 replyButton.addEventListener("click", () => {
-  console.log(`You input: ${edyInput.innerText}`);
+  const replyEvents = [];
+  replyEvents[0] = {
+    type: "message",
+    replyToken: "_",
+    source: {
+      userId: "_",
+      type: "edy",
+    },
+    message: {
+      id: "_",
+      type: "text",
+      text: edyInputText.innerText,
+    },
+  };
+  fetch(`${url}/api/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    body: JSON.stringify(replyEvents),
+  });
+  location.reload();
 });
