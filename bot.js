@@ -12,7 +12,7 @@ const bot = {};
 
 // DBとのやりとりのための設定
 const fetch = require("node-fetch");
-const url = "https://300af617.ngrok.io/";
+const url = "https://edy-bot.herokuapp.com/";
 
 // 相手からのメッセージをDBに追加
 bot.insertMessage = (req, res) => {
