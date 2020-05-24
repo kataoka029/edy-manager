@@ -12,7 +12,7 @@ const client = new line.Client(config);
 const handleReply = (event) => {
   const replyMessage = {
     type: "text",
-    text: `REPLY: ${event.message.text}`,
+    text: `「${event.message.text}」ですね。申し訳ないのですが、言葉の意味がよく分かりません😰なるべく早く担当からご連絡させていただきますので、少々お待ちください🙇‍♀️`,
   };
   return replyMessage;
 };

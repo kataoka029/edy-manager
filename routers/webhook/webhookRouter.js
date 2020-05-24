@@ -3,7 +3,7 @@ const express = require("express");
 const { handleReply, handleEvent, lineMiddleware } = require("../../bot.js");
 const fetch = require("node-fetch");
 const _ = require("lodash");
-const url = "https://8a6e2f12.ngrok.io";
+const url = "https://300af617.ngrok.io/";
 
 const webhookRouter = express.Router();
 webhookRouter.post("/", lineMiddleware, async (req, res) => {

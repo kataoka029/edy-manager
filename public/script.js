@@ -1,7 +1,7 @@
 const leftContainer = document.querySelector("div.left-container");
 const messagesContainer = document.querySelector("div.messages-container");
 const rightContainer = document.querySelector("div.right-container");
-const url = "https://8a6e2f12.ngrok.io";
+const url = "https://300af617.ngrok.io/";
 
 fetch(`${url}/api/messages`)
   .then((res) => res.json())
