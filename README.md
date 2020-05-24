@@ -1,22 +1,30 @@
-# 🤖 EDY BOTとは
+# 🤖 EDY BOT とは
+
 ## 概要
-* LINEを通じた顧客とのコミュニケーションツール。
-* Messaging APIを活用したポット対応と、ボットでは対応しきれない場合の手動への切り替えをシームレスに行うことが可能。
+
+- LINE を通じた顧客とのコミュニケーションツール。
+- Messaging API を活用したポット対応と、ボットでは対応しきれない場合の手動への切り替えをシームレスに行うことが可能。
+
 ## イメージ
+
 ![](https://raw.githubusercontent.com/kataoka029/edy-bot/master/public/img/top-image.jpg)
 
 # 💻 開発
-## 環境
-* Node.js - 12.16.1
-* @line/bot-sdk - 6.8.4
-* heroku - 7.41.1
 
-## API（外部利用不可）
-* GET /api/messages?u={user_id}：user_idのメッセージの一覧が取得できる。
-* POST /api/messages：メッセージを作成できる。
-* POST /webhook：LINEからの通知がくる。
-  
+## 環境
+
+- Node.js - 12.16.1
+- @line/bot-sdk - 6.8.4
+- heroku - 7.41.1
+
+## API
+
+- GET /api/messages?u={user_id}：user_id のメッセージの一覧が取得できる。
+- POST /api/messages：メッセージを作成できる。
+- POST /webhook：LINE からの通知がくる。
+
 ## フォルダ構成
+
     ├── README.md
     ├── bot.js
     ├── knexfile.js
@@ -46,9 +54,10 @@
     ├── server.js
     └── yarn.lock
 
-# 今後の実装予定
-* Reactでリアルタイムに更新できるようにする。
-* プッシュメッセージを送った際に相手のLINEに反映させる。
-* ユーザー情報を取得する。
-* ユーザー一覧を左カラムに表示する。
-* ユーザー詳細を右カラムに表示する。
+# 🧞‍♂️ 今後の実装予定
+
+- React でリアルタイムに更新できるようにする。
+- プッシュメッセージを送った際に相手の LINE に反映させる。
+- ユーザー情報を取得する。
+- ユーザー一覧を左カラムに表示する。
+- ユーザー詳細を右カラムに表示する。
