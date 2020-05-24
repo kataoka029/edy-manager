@@ -1,7 +1,9 @@
 # 🤖 EDY BOTとは
+## 概要
 * LINEを通じた顧客とのコミュニケーションツール。
 * Messaging APIを活用したポット対応と、ボットでは対応しきれない場合の手動への切り替えをシームレスに行うことが可能。
-![](https://raw.githubusercontent.com/kataoka029/edy-bot/master/public/img/200524_edy-bot.jpg)
+## イメージ
+![](https://raw.githubusercontent.com/kataoka029/edy-bot/master/public/img/top-image.jpg)
 
 # 💻 開発
 ## 環境
