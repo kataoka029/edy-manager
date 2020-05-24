@@ -5,6 +5,10 @@
     <script type="text/javascript" src="script.js" defer></script>
     <link rel="stylesheet" type="text/css" href="reset.css" />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <title>EDY Bot</title>
   </head>
   <body>
@@ -32,8 +36,16 @@
         <div class="center-container">
           <div class="messages-container"></div>
           <div class="edy-input">
-            <div class="menu-bar"></div>
-            <div class="text" placeholder="メッセージを入力"></div>
+            <div class="menu-bar">
+              <a class="mood"><span class="material-icons">mood</i></a>
+              <a class="attachment"><span class="material-icons">attachment</i></a>
+              <a class="reply"><span class="material-icons">reply</i></a>
+            </div>
+            <div
+              class="text"
+              data-placeholder="メッセージを入力"
+              contenteditable="true"
+            ></div>
           </div>
         </div>
         <div class="right-container">
