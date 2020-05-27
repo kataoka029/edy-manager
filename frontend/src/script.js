@@ -1,7 +1,7 @@
 const messagesContainer = document.querySelector("div.messages-container");
 const edyInputText = document.querySelector("div.edy-input div.text");
 const replyButton = document.querySelector("a.reply");
-const url = "https://edy-bot.herokuapp.com/";
+const url = "https://c8bce5b3.ngrok.io/";
 
 // あるユーザーIDのメッセージを取得する
 fetch(`${url}/api/messages?u=1`)
