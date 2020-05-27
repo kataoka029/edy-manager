@@ -1,0 +1,8 @@
+{
+  "name": "edy-manager",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kataoka029/edy-manager.git",
+  "author": "kataoka029 <kataoka029@gmail.com>",
+  "license": "MIT"
+}
