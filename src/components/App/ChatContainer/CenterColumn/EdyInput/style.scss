@@ -1,0 +1,49 @@
+/* CENTER COLUMN - INPUT */
+div.edy-input {
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  bottom: 0;
+  height: 140px;
+  margin-left: -1px;
+  max-width: 619px;
+  position: fixed;
+  width: calc(50% - 81px);
+}
+
+div.edy-input div.menu-bar {
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  height: 30px;
+}
+
+span.material-icons {
+  font-size: 22px;
+  line-height: 30px;
+}
+
+a.mood {
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+a.attachment {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+a.reply {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 30px;
+}
+
+div.edy-input div.text {
+  border-top: 1px solid var(--border-color);
+  padding: 10px;
+  height: 110px;
+}
+
+div.edy-input div.text:empty:before {
+  color: #c4c4c4;
+  content: attr(data-placeholder);
+}

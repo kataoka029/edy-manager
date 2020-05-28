@@ -1,0 +1,23 @@
+.left-column {
+  background-color: #ffffff;
+  height: 100vh;
+  padding: 20px 50px;
+  width: 25%;
+
+  .under-construction {
+    height: 100vh;
+    text-align: center;
+
+    p {
+      margin: 200px auto 0;
+      max-width: 220px;
+    }
+
+    img {
+      border-radius: 50%;
+      margin-top: 80px;
+      max-width: 180px;
+      width: 100%;
+    }
+  }
+}

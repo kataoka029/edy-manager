@@ -16,6 +16,14 @@ module.exports = {
         test: /\.css$/,
         use: ["style-loader", "css-loader"],
       },
+      {
+        test: /\.s[ac]ss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        loader: "url-loader",
+      },
     ],
   },
   resolve: { extensions: ["*", ".js", ".jsx"] },

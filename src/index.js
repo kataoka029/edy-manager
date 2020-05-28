@@ -1,34 +1,38 @@
-// OLD
-const messagesContainer = document.querySelector("div.messages-container");
-const edyInputText = document.querySelector("div.edy-input div.text");
-const replyButton = document.querySelector("a.reply");
-const url = "https://c8bce5b3.ngrok.io/";
-
 // NEW
-import "./reset.css";
-import "./style.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App.js";
-ReactDOM.render(<App />, messagesContainer);
+import App from "./components/App/";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import "./reset.css";
+
+const initialState = {
+  chats: [],
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_CHATS":
+      return { ...state, chats: action.chats };
+    default:
+      return state;
+  }
+};
+
+const store = createStore(reducer);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector("#root")
+);
 
 // OLD
-// あるユーザーIDのメッセージを取得する
-// fetch(`${url}/api/messages?u=1`)
-//   .then((res) => res.json())
-//   .then((messages) => {
-//     for (const message of messages) {
-//       const div = document.createElement("div");
-//       div.classList.add("chat");
-//       if (message.line_user_type === "user") {
-//         div.classList.add("left-chat");
-//       } else {
-//         div.classList.add("right-chat");
-//       }
-//       div.innerHTML = message.line_message_text;
-//       messagesContainer.appendChild(div);
-//     }
-//   });
+// const messagesContainer = document.querySelector("div.messages-container");
+const edyInputText = document.querySelector("div.edy-input div.text");
+const replyButton = document.querySelector("a.reply");
+const url = "https://edy-api.herokuapp.com/";
 
 // DBには入るけど、LINEには送れていない
 replyButton.addEventListener("click", () => {
