@@ -21,16 +21,21 @@ const EdyInput = () => {
         text: input,
       },
     };
+    dispatch({
+      type: "ADD_MESSAGE",
+      message: {
+        line_message_text: input,
+        line_user_type: "edy",
+      },
+    });
+
     fetch("https://edy-api.herokuapp.com/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
       body: JSON.stringify(replyEvents),
-    }).then((res) => {
-      console.log(res);
     });
-    // location.reload();
   };
 
   return (
@@ -51,7 +56,9 @@ const EdyInput = () => {
       <textarea
         className="text"
         placeholder="メッセージを入力"
-        onChange={(e) => dispatch({ type: "SET_INPUT", input: e.target.value })}
+        onChange={(e) =>
+          dispatch({ type: "HANDLE_INPUT", input: e.target.value })
+        }
       ></textarea>
     </div>
   );

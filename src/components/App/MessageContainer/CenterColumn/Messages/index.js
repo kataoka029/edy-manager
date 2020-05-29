@@ -15,6 +15,7 @@ const Messages = () => {
           type: "SET_MESSAGES",
           messages: data,
         });
+        // console.log(data);
       });
   }, []);
 
