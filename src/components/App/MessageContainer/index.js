@@ -4,9 +4,9 @@ import LeftColumn from "./LeftColumn";
 import CenterContainer from "./CenterColumn";
 import RightColumn from "./RightColumn";
 
-const ChatContainer = () => {
+const MessageContainer = () => {
   return (
-    <div className="chat-container">
+    <div className="message-container">
       <LeftColumn />
       <CenterContainer />
       <RightColumn />
@@ -14,4 +14,4 @@ const ChatContainer = () => {
   );
 };
 
-export default ChatContainer;
+export default MessageContainer;

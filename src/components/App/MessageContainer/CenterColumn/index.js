@@ -1,12 +1,14 @@
 import React from "react";
 import "./style.scss";
-import Chats from "./Chats";
+import Messages from "./Messages";
 import EdyInput from "./EdyInput";
 
 const CenterColumn = () => {
   return (
     <div className="center-column">
-      <Chats />
+      <div className="messages">
+        <Messages />
+      </div>
       <EdyInput />
     </div>
   );

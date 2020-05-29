@@ -1,12 +1,12 @@
-.center-column {
+div.center-column {
   background-color: #ffffff;
   border-left: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 270px);
+  height: calc(100vh - 290px);
   overflow: scroll;
-  padding: 40px 0;
+  padding: 50px 0;
   position: relative;
   width: 50%;
 }
