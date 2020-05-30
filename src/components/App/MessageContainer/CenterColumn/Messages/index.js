@@ -1,14 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import io from "socket.io-client";
 import "./style.scss";
+const url = "https://ccee4f3076b5.ngrok.io/";
+
+// socket.io-clientの設定;
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:4000/");
 
 const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages);
 
-  useEffect(() => {
-    fetch("https://edy-api.herokuapp.com//api/messages?u=1")
+  const fetchMessages = () => {
+    fetch(`${url}api/messages?u=1`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({
@@ -16,6 +20,15 @@ const Messages = () => {
           messages: data,
         });
       });
+  };
+
+  socket.on("refetch", (data) => {
+    console.log(`Message from line-use-id: "${data.event.source.userId}"`);
+    fetchMessages();
+  });
+
+  useEffect(() => {
+    fetchMessages();
   }, []);
 
   return messages.map((message, index) => {
