@@ -27,7 +27,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "webpack-dev-server -d --open",
+    "dev": "webpack-dev-server -d --open --devtool source-map",
     "build": "webpack -p"
   }
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
-const url = "https://ccee4f3076b5.ngrok.io/";
+const url = "https://ec9b79b8d2ca.ngrok.io/";
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
@@ -22,13 +22,16 @@ const Messages = () => {
       });
   };
 
-  socket.on("refetch", (data) => {
-    console.log(`Message from line-use-id: "${data.event.source.userId}"`);
-    fetchMessages();
-  });
-
   useEffect(() => {
     fetchMessages();
+  }, []);
+
+  useEffect(() => {
+    socket.on("refetch", (data) => {
+      console.log(`Message from line-use-id: "${data.event.source.userId}"`);
+      fetchMessages();
+    });
+    // fetchMessages();
   }, []);
 
   return messages.map((message, index) => {
