@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
-const url = "https://ec9b79b8d2ca.ngrok.io/";
+const url = "http://localhost:4000/";
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
@@ -28,10 +28,12 @@ const Messages = () => {
 
   useEffect(() => {
     socket.on("refetch", (data) => {
-      console.log(`Message from line-use-id: "${data.event.source.userId}"`);
+      console.log(`UID: ${data.event.source.userId}`);
       fetchMessages();
     });
-    // fetchMessages();
+    return () => {
+      socket.off("refetch");
+    };
   }, []);
 
   return messages.map((message, index) => {

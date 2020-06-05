@@ -11,10 +11,3 @@ ReactDOM.render(
   </Provider>,
   document.querySelector("#root")
 );
-
-// // socket.ioの設定;
-// import io from "socket.io-client";
-// const socket = io.connect("http://localhost:4000/");
-// socket.on("refetch", (data) => {
-//   console.log(`Message from line-use-id: "${data.event.source.userId}"`);
-// });
