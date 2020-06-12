@@ -22,10 +22,12 @@ const Messages = () => {
       });
   };
 
+  // 最初にmessagesを取得する
   useEffect(() => {
     fetchMessages();
   }, []);
 
+  // 最初にrefetchイベントがサーバーからきたらfetchMessages()をするようにする
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log(`UID: ${data.event.source.userId}`);
