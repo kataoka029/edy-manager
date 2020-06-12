@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
-const url = "http://localhost:4000/";
+const url = process.env.API_URL || "http://localhost:4000/";
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:4000/");
+const socket = io.connect(url);
 
 const Messages = () => {
   const dispatch = useDispatch();
