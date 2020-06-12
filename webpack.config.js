@@ -36,7 +36,7 @@ module.exports = {
     contentBase: path.join(__dirname, "public/"),
     hotOnly: true,
     historyApiFallback: true,
-    port: 3000,
+    port: process.env.PORT || 3000,
     publicPath: "/",
   },
   plugins: [
