@@ -30,6 +30,7 @@
   },
   "scripts": {
     "build": "webpack -p",
-    "dev": "webpack-dev-server -d --open --devtool source-map"
+    "dev": "webpack-dev-server -d --open --devtool source-map",
+    "start": "src bundle.js"
   }
 }
