@@ -6,8 +6,6 @@ const url =
   process.env.NODE_ENV === "production"
     ? "https://edy-api.herokuapp.com/"
     : "http://localhost:4000/";
-console.log("process.env: ", process.env);
-console.log("URL: ", url);
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
@@ -16,9 +14,10 @@ const socket = io.connect(url);
 const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages);
+  const userId = useSelector((state) => state.userId);
 
   const fetchMessages = () => {
-    fetch(`${url}api/messages?u=1`)
+    fetch(`${url}api/messages/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({
@@ -31,7 +30,7 @@ const Messages = () => {
   // 最初にmessagesを取得する
   useEffect(() => {
     fetchMessages();
-  }, []);
+  }, [userId]);
 
   // 最初にrefetchイベントがサーバーからきたらfetchMessages()をするようにする
   useEffect(() => {
