@@ -32,6 +32,6 @@
   "scripts": {
     "build": "webpack -p",
     "dev": "webpack-dev-server -d --open --devtool source-map",
-    "start": "node server.js"
+    "start": "webpack -p && node server.js"
   }
 }
