@@ -3,7 +3,10 @@ import "./style.scss";
 
 const User = (props) => {
   return (
-    <div className="user">
+    <div
+      className={props.selected ? "user selected" : "user"}
+      data-user-id={props.userId}
+    >
       <a href={props.link}>
         <p className="user-id">10001</p>
         <p className="text">

@@ -4,7 +4,7 @@ div.user {
   padding: 16px 20px;
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: #fafafa;
   }
 
   a {
@@ -25,5 +25,13 @@ div.user {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+  }
+}
+
+div.selected {
+  background-color: #f5f5f5;
+
+  &:hover {
+    background-color: #f5f5f5;
   }
 }
