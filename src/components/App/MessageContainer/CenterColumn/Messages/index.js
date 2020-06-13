@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
-const url = process.env.API_URL || "http://localhost:4000/";
+
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://edy-api.herokuapp.com/"
+    : "http://localhost:4000/";
 console.log("process.env: ", process.env);
 console.log("URL: ", url);
 
