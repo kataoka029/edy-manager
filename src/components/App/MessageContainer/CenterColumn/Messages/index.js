@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import Message from "./Message";
 import "./style.scss";
 
 const url =
@@ -43,15 +44,9 @@ const Messages = () => {
     };
   }, []);
 
-  return messages.map((message, index) => {
-    const className =
-      message.line_user_type === "user" ? "left-message" : "right-message";
-    return (
-      <div className={`message ${className}`} key={`message${index}`}>
-        {message.line_message_text}
-      </div>
-    );
-  });
+  return messages.map((message, index) => (
+    <Message message={message} key={`message${index}`} />
+  ));
 };
 
 export default Messages;
