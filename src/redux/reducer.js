@@ -2,7 +2,7 @@ const initialState = {
   messages: [],
   input: "",
   users: [],
-  userId: "",
+  lineUserId: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,7 +12,6 @@ const reducer = (state = initialState, action) => {
     case "ADD_MESSAGE":
       return { ...state, messages: [...state.messages, action.message] };
     case "SET_USERS":
-      console.log(JSON.stringify(state.users), JSON.stringify(action.users));
       return { ...state, users: action.users };
     case "SET_USERID":
       return { ...state, userId: action.userId };

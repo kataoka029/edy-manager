@@ -9,10 +9,9 @@ const User = (props) => {
       data-user-id={props.userId}
     >
       <Link to={props.link}>
-        {/* <a href={props.link}> */}
-        <p className="user-id">{props.userId}</p>
-        <p className="text">{props.userText}</p>
-        {/* </a> */}
+        <div className="line-user-id">{props.lineUserId}</div>
+        <div className="user-id">{props.userId}</div>
+        <div className="text">{props.userText}</div>
       </Link>
     </div>
   );

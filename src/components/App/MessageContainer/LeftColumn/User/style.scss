@@ -13,13 +13,13 @@ div.user {
     overflow: hidden;
     text-decoration: none;
 
-    p {
+    div {
       font-size: 13px;
     }
 
-    p.text {
+    div.text {
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       color: #808284;
       display: -webkit-box;
       overflow: hidden;

@@ -11,7 +11,7 @@ const url =
 const LeftColumn = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  const userId = useSelector((state) => state.userId);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   const fetchUsers = () => {
     fetch(`${url}api/users/`)
@@ -26,17 +26,18 @@ const LeftColumn = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [users]);
 
   return (
     <div className="left-column">
       {users.map((user, index) => {
         return (
           <User
-            link={`/messages/${user.userId}`}
+            link={`/messages/${user.lineUserId}`}
+            lineUserId={user.lineUserId}
             userId={user.userId}
             userText={user.userText}
-            selected={userId === user.userId ? true : false}
+            selected={lineUserId === user.lineUserId ? true : false}
             key={`user${index}`}
           />
         );
