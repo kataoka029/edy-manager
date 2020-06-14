@@ -13,8 +13,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, messages: [...state.messages, action.message] };
     case "SET_USERS":
       return { ...state, users: action.users };
-    case "SET_USERID":
-      return { ...state, userId: action.userId };
+    case "SET_LINEUSERID":
+      return { ...state, lineUserId: action.lineUserId };
     case "HANDLE_INPUT":
       return { ...state, input: action.input };
     default:

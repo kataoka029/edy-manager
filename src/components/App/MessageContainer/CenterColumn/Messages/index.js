@@ -15,10 +15,10 @@ const socket = io.connect(url);
 const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages);
-  const userId = useSelector((state) => state.userId);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   const fetchMessages = () => {
-    fetch(`${url}api/messages/${userId}`)
+    fetch(`${url}api/messages/${lineUserId}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({
@@ -44,7 +44,7 @@ const Messages = () => {
   // 最初にmessagesを取得する
   useEffect(() => {
     fetchMessages();
-  }, [userId]);
+  }, [lineUserId]);
 
   // 最初にrefetchイベントがサーバーからきたらfetchMessages()をするようにする
   useEffect(() => {
@@ -56,7 +56,7 @@ const Messages = () => {
     return () => {
       socket.off("refetch");
     };
-  }, [userId]);
+  }, [lineUserId]);
 
   return messages.map((message, index) => (
     <Message message={message} key={`message${index}`} />

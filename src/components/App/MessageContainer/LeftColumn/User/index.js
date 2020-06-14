@@ -9,9 +9,9 @@ const User = (props) => {
       data-user-id={props.userId}
     >
       <Link to={props.link}>
-        <div className="line-user-id">{props.lineUserId}</div>
-        <div className="user-id">{props.userId}</div>
+        <div className="user-id">{props.userId > 0 ? props.userId : "-"}</div>
         <div className="text">{props.userText}</div>
+        <div className="line-user-id">{props.lineUserId}</div>
       </Link>
     </div>
   );

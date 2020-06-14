@@ -8,9 +8,9 @@ div.user {
   }
 
   a {
-    display: block;
-    height: 60px;
-    overflow: hidden;
+    // display: block;
+    // height: 60px;
+    // overflow: hidden;
     text-decoration: none;
 
     div {
@@ -25,13 +25,17 @@ div.user {
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+    div.line-user-id {
+      color: #808284;
+    }
   }
 }
 
 div.selected {
-  background-color: #f5f5f5;
+  background-color: #f0f0f0;
 
   &:hover {
-    background-color: #f5f5f5;
+    background-color: #f0f0f0;
   }
 }

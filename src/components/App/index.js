@@ -11,7 +11,7 @@ const App = () => {
       <NavBar />
       <Router>
         <Route exact path="/" component={MessageContainer} />
-        <Route path="/messages/:userId" component={MessageContainer} />
+        <Route path="/messages/:lineUserId" component={MessageContainer} />
         <Route path="/orders" component={OrderContainer} />
       </Router>
     </>
