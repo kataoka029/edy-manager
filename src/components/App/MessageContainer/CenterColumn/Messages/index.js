@@ -29,6 +29,18 @@ const Messages = () => {
       .catch((err) => console.log(err));
   };
 
+  // LeftColumn/index.jsと被るけどしかたないか
+  const fetchUsers = () => {
+    fetch(`${url}api/users/`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: "SET_USERS",
+          users: data,
+        });
+      });
+  };
+
   // 最初にmessagesを取得する
   useEffect(() => {
     fetchMessages();
@@ -39,6 +51,7 @@ const Messages = () => {
     socket.on("refetch", (data) => {
       console.log(`UID: ${data.event.source.userId}`);
       fetchMessages();
+      fetchUsers();
     });
     return () => {
       socket.off("refetch");

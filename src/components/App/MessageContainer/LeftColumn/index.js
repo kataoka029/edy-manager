@@ -13,6 +13,7 @@ const LeftColumn = () => {
   const users = useSelector((state) => state.users);
   const lineUserId = useSelector((state) => state.lineUserId);
 
+  // CenterColumn/Messages/index.jsと被るけどしかたないか
   const fetchUsers = () => {
     fetch(`${url}api/users/`)
       .then((res) => res.json())
@@ -26,7 +27,7 @@ const LeftColumn = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [users]);
+  }, []);
 
   return (
     <div className="left-column">
