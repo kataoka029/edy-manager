@@ -30,7 +30,7 @@ const EdyInput = () => {
     });
 
     // DBに入れる
-    fetch("https://edy-api.herokuapp.com/api/messages", {
+    fetch("https://edy-bot.herokuapp.com/api/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

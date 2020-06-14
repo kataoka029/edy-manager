@@ -5,7 +5,7 @@ import "./style.scss";
 
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://edy-api.herokuapp.com/"
+    ? "https://edy-bot.herokuapp.com/"
     : "http://localhost:4000/";
 
 const LeftColumn = () => {
