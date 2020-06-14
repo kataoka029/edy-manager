@@ -2,9 +2,15 @@ import React from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://edy-bot.herokuapp.com/"
+    : "http://localhost:4000/";
+
 const EdyInput = () => {
   const dispatch = useDispatch();
   const input = useSelector((state) => state.input);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   const pushMessage = () => {
     const replyEvents = [];
@@ -12,7 +18,7 @@ const EdyInput = () => {
       type: "message",
       replyToken: "_",
       source: {
-        userId: "_",
+        userId: lineUserId,
         type: "edy",
       },
       message: {
@@ -30,7 +36,7 @@ const EdyInput = () => {
     });
 
     // DBに入れる
-    fetch("https://edy-bot.herokuapp.com/api/messages", {
+    fetch(`${url}api/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
