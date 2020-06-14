@@ -14,7 +14,7 @@ const MessageContainer = (props) => {
       type: "SET_USERID",
       userId,
     });
-  });
+  }, [userId]);
 
   return (
     <div className="message-container">

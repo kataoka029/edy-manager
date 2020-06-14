@@ -25,7 +25,8 @@ const Messages = () => {
           type: "SET_MESSAGES",
           messages: data,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   // 最初にmessagesを取得する
@@ -42,7 +43,7 @@ const Messages = () => {
     return () => {
       socket.off("refetch");
     };
-  }, []);
+  }, [userId]);
 
   return messages.map((message, index) => (
     <Message message={message} key={`message${index}`} />

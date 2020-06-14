@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 const User = (props) => {
   return (
@@ -7,12 +8,12 @@ const User = (props) => {
       className={props.selected ? "user selected" : "user"}
       data-user-id={props.userId}
     >
-      <a href={props.link}>
-        <p className="user-id">10001</p>
-        <p className="text">
-          LINEの友達追加ありがとうございます😀ご質問がありましたら、おっしゃってください！LINEの友達追加ありがとうございます😀ご質問がありましたら、おっしゃってください！
-        </p>
-      </a>
+      <Link to={props.link}>
+        {/* <a href={props.link}> */}
+        <p className="user-id">{props.userId}</p>
+        <p className="text">{props.userText}</p>
+        {/* </a> */}
+      </Link>
     </div>
   );
 };

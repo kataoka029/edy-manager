@@ -9,38 +9,24 @@ const url =
     : "http://localhost:4000/";
 
 const LeftColumn = () => {
-  // const dispatch = useDispatch();
-  // const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.users);
   const userId = useSelector((state) => state.userId);
 
-  // const fetchUsers = () => {
-  //   fetch(`${url}api/users/`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       dispatch({
-  //         type: "SET_USERS",
-  //         messages: users,
-  //       });
-  //     });
-  // };
+  const fetchUsers = () => {
+    fetch(`${url}api/users/`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({
+          type: "SET_USERS",
+          users: data,
+        });
+      });
+  };
 
-  const users = [
-    {
-      userId: 1,
-      selected: false,
-      // lastMessage: "hello, this is last message of user 1",
-    },
-    {
-      userId: 2,
-      selected: false,
-      // lastMessage: "hello, this is last message of user 2",
-    },
-    {
-      userId: 3,
-      selected: false,
-      // lastMessage: "hello, this is last message of user 3",
-    },
-  ];
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <div className="left-column">
@@ -49,7 +35,8 @@ const LeftColumn = () => {
           <User
             link={`/messages/${user.userId}`}
             userId={user.userId}
-            selected={user.selected}
+            userText={user.userText}
+            selected={userId === user.userId ? true : false}
             key={`user${index}`}
           />
         );
