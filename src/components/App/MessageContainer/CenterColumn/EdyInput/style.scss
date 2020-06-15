@@ -6,7 +6,7 @@ div.edy-input {
   margin-left: -1px;
   max-width: 599px;
   position: fixed;
-  width: calc(50% - 101px);
+  width: 44%;
 
   div.menu-bar {
     border-top: 1px solid var(--border-color);
@@ -44,6 +44,10 @@ div.edy-input {
 
     &::placeholder {
       color: #c4c4c4;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 }

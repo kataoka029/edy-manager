@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Message from "./Message";
+import config from "../../../../../config";
 import "./style.scss";
+
+import { fetchMessages, fetchUsers } from "../../../../../utils";
 
 const url =
   process.env.NODE_ENV === "production"
@@ -10,48 +13,24 @@ const url =
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
-const socket = io.connect(url);
+const socket = io.connect(config.url);
 
 const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages);
   const lineUserId = useSelector((state) => state.lineUserId);
 
-  const fetchMessages = () => {
-    fetch(`${url}api/messages/${lineUserId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({
-          type: "SET_MESSAGES",
-          messages: data,
-        });
-      })
-      .catch((err) => console.log(err));
-  };
-
-  // LeftColumn/index.jsと被るけどしかたないか
-  const fetchUsers = () => {
-    fetch(`${url}api/users/`)
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch({
-          type: "SET_USERS",
-          users: data,
-        });
-      });
-  };
-
-  // 最初にmessagesを取得する
+  // [lineUserId]は必須
   useEffect(() => {
-    fetchMessages();
+    fetchMessages(dispatch, lineUserId);
   }, [lineUserId]);
 
-  // 最初にrefetchイベントがサーバーからきたらfetchMessages()をするようにする
+  // [lineUserId]
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log(`UID: ${data.event.source.userId}`);
-      fetchMessages();
-      fetchUsers();
+      fetchMessages(dispatch, lineUserId);
+      fetchUsers(dispatch);
     });
     return () => {
       socket.off("refetch");

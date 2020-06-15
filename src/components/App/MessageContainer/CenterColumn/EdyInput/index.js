@@ -2,10 +2,7 @@ import React from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
-const url =
-  process.env.NODE_ENV === "production"
-    ? "https://edy-bot.herokuapp.com/"
-    : "http://localhost:4000/";
+import config from "../../../../../config";
 
 const EdyInput = () => {
   const dispatch = useDispatch();
@@ -36,7 +33,7 @@ const EdyInput = () => {
     });
 
     // DBに入れる
-    fetch(`${url}api/messages`, {
+    fetch(`${config.url}api/messages`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
