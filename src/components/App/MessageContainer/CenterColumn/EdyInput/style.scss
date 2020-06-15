@@ -4,9 +4,9 @@ div.edy-input {
   bottom: 0;
   height: 140px;
   margin-left: -1px;
-  max-width: 599px;
+  max-width: 616px;
   position: fixed;
-  width: 44%;
+  width: calc(44% - 2px);
 
   div.menu-bar {
     border-top: 1px solid var(--border-color);

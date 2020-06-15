@@ -25,3 +25,13 @@ export const fetchMessages = (dispatch, lineUserId) => {
     .then(() => console.log("Messages was fetched."))
     .catch((err) => console.log(err));
 };
+
+export const insertMessage = async (events) => {
+  await fetch(`${url}api/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(events),
+  });
+};

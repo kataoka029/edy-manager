@@ -2,16 +2,17 @@ import React from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
-import config from "../../../../../config";
+// import config from "../../../../../config";
+import { insertMessage, fetchMessages, fetchUsers } from "../../../../../utils";
 
 const EdyInput = () => {
   const dispatch = useDispatch();
   const input = useSelector((state) => state.input);
   const lineUserId = useSelector((state) => state.lineUserId);
 
-  const pushMessage = () => {
-    const replyEvents = [];
-    replyEvents[0] = {
+  const pushMessage = async () => {
+    const events = [];
+    events[0] = {
       type: "message",
       replyToken: "_",
       source: {
@@ -24,22 +25,13 @@ const EdyInput = () => {
         text: input,
       },
     };
-    dispatch({
-      type: "ADD_MESSAGE",
-      message: {
-        line_message_text: input,
-        line_user_type: "edy",
-      },
-    });
 
     // DBに入れる
-    fetch(`${config.url}api/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(replyEvents),
-    });
+    await insertMessage(events);
+
+    // users&messagesを更新する
+    fetchUsers(dispatch);
+    fetchMessages(dispatch, lineUserId);
 
     // LINEに送る
   };
