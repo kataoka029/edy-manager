@@ -33,5 +33,20 @@ export const insertMessage = async (events) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(events),
-  });
+  })
+    .then(() => console.log("Message was inserted."))
+    .catch((err) => console.log(err));
+};
+
+// edyInputからLINEに
+export const sendMessage = (events, lineUserId) => {
+  fetch(`${url}api/messages/${lineUserId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(events),
+  })
+    .then(() => console.log("Messages was sent."))
+    .catch((err) => console.log("ERROR in sendMessage(): ", err));
 };

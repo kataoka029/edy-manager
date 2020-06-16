@@ -3,7 +3,12 @@ import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
 // import config from "../../../../../config";
-import { insertMessage, fetchMessages, fetchUsers } from "../../../../../utils";
+import {
+  insertMessage,
+  fetchMessages,
+  fetchUsers,
+  sendMessage,
+} from "../../../../../utils";
 
 const EdyInput = () => {
   const dispatch = useDispatch();
@@ -34,6 +39,7 @@ const EdyInput = () => {
     fetchMessages(dispatch, lineUserId);
 
     // LINEに送る
+    sendMessage(events, lineUserId);
   };
 
   return (

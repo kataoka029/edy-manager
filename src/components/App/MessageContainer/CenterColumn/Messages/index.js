@@ -6,11 +6,6 @@ import "./style.scss";
 
 import { fetchMessages, fetchUsers } from "../../../../../utils";
 
-const url =
-  process.env.NODE_ENV === "production"
-    ? "https://edy-bot.herokuapp.com/"
-    : "http://localhost:4000/";
-
 // socket.io-clientの設定;
 import io from "socket.io-client";
 const socket = io.connect(config.url);
