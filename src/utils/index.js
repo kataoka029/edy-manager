@@ -10,7 +10,8 @@ export const fetchUsers = (dispatch) => {
         users: data,
       });
     })
-    .then(() => console.log("Users was fetched."));
+    .then(() => console.log("ERROR/ fetchMessages()/ "))
+    .catch((err) => console.log(err));
 };
 
 export const fetchMessages = (dispatch, lineUserId) => {
@@ -22,8 +23,8 @@ export const fetchMessages = (dispatch, lineUserId) => {
         messages: data,
       });
     })
-    .then(() => console.log("Messages was fetched."))
-    .catch((err) => console.log(err));
+    .then(() => console.log("SUCCESS/ fetchMessages()/ "))
+    .catch((err) => console.log("ERROR/ fetchMessages()/ ", err));
 };
 
 export const insertMessage = async (events) => {
@@ -34,11 +35,10 @@ export const insertMessage = async (events) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("Message was inserted."))
-    .catch((err) => console.log(err));
+    .then(() => console.log("SUCCESS/ insertMessage()/ "))
+    .catch((err) => console.log("ERROR/ insertMessage()/ ", err));
 };
 
-// edyInputからLINEに
 export const sendMessage = (events, lineUserId) => {
   fetch(`${url}api/messages/${lineUserId}`, {
     method: "POST",
@@ -47,6 +47,6 @@ export const sendMessage = (events, lineUserId) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("Messages was sent."))
-    .catch((err) => console.log("ERROR in sendMessage(): ", err));
+    .then(() => console.log("SUCCESS/ sendMessage()/ "))
+    .catch((err) => console.log("ERROR/ sendMessage()/ ", err));
 };
