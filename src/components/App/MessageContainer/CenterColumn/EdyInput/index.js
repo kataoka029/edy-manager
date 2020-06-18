@@ -45,6 +45,12 @@ const EdyInput = () => {
         onChange={(e) =>
           dispatch({ type: "HANDLE_INPUT", input: e.target.value })
         }
+        onKeyDown={(e) => {
+          if (e.keyCode === 13 && !e.shiftKey && !e.metaKey) {
+            e.preventDefault();
+            document.querySelector("a.reply span").click();
+          }
+        }}
       ></textarea>
     </div>
   );
