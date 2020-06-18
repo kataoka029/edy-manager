@@ -2,11 +2,11 @@ import React from "react";
 import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
-// import config from "../../../../../config";
 import {
-  insertMessage,
-  fetchMessages,
   fetchUsers,
+  fetchMessages,
+  createPushMessage,
+  insertMessage,
   sendMessage,
 } from "../../../../../utils";
 
@@ -16,30 +16,12 @@ const EdyInput = () => {
   const lineUserId = useSelector((state) => state.lineUserId);
 
   const pushMessage = async () => {
-    const events = [];
-    events[0] = {
-      type: "message",
-      replyToken: "_",
-      source: {
-        userId: lineUserId,
-        type: "edy",
-      },
-      message: {
-        id: "_",
-        type: "text",
-        text: input,
-      },
-    };
-
-    // DBに入れる
+    const events = createPushMessage(input, lineUserId);
     await insertMessage(events);
-
-    // users&messagesを更新する
     fetchUsers(dispatch);
     fetchMessages(dispatch, lineUserId);
-
-    // LINEに送る
     sendMessage(events, lineUserId);
+    document.querySelector("textarea.text").value = "";
   };
 
   return (

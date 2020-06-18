@@ -27,6 +27,24 @@ export const fetchMessages = (dispatch, lineUserId) => {
     .catch((err) => console.log("ERROR/ fetchMessages()/ ", err));
 };
 
+export const createPushMessage = (input, lineUserId) => {
+  const events = [];
+  events[0] = {
+    type: "message",
+    replyToken: "_",
+    source: {
+      userId: lineUserId,
+      type: "edy",
+    },
+    message: {
+      id: "_",
+      type: "text",
+      text: input,
+    },
+  };
+  return events;
+};
+
 export const insertMessage = async (events) => {
   await fetch(`${url}api/messages`, {
     method: "POST",
