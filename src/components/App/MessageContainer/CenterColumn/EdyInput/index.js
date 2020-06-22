@@ -13,14 +13,14 @@ import {
 const EdyInput = () => {
   const dispatch = useDispatch();
   const input = useSelector((state) => state.input);
-  const lineUserId = useSelector((state) => state.lineUserId);
+  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   const pushMessage = async () => {
-    const events = createPushMessage(input, lineUserId);
+    const events = createPushMessage(input, selectedLineUserId);
     await insertMessage(events);
     fetchUsers(dispatch);
-    fetchMessages(dispatch, lineUserId);
-    sendMessage(events, lineUserId);
+    fetchMessages(dispatch, selectedLineUserId);
+    sendMessage(events, selectedLineUserId);
     document.querySelector("textarea.text").value = "";
   };
 

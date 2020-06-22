@@ -7,14 +7,14 @@ import { useDispatch } from "react-redux";
 
 const MessageContainer = (props) => {
   const dispatch = useDispatch();
-  const lineUserId = props.match.params.lineUserId;
+  const selectedLineUserId = props.match.params.lineUserId;
 
   useEffect(() => {
     dispatch({
       type: "SET_LINEUSERID",
-      lineUserId,
+      selectedLineUserId,
     });
-  }, [lineUserId]);
+  }, [selectedLineUserId]);
 
   return (
     <div className="message-container">

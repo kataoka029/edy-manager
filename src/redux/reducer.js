@@ -2,7 +2,8 @@ const initialState = {
   messages: [],
   input: "",
   users: [],
-  lineUserId: "",
+  selectedLineUserId: "",
+  unreadCounts: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,9 +15,11 @@ const reducer = (state = initialState, action) => {
     case "SET_USERS":
       return { ...state, users: action.users };
     case "SET_LINEUSERID":
-      return { ...state, lineUserId: action.lineUserId };
+      return { ...state, selectedLineUserId: action.selectedLineUserId };
     case "HANDLE_INPUT":
       return { ...state, input: action.input };
+    case "SET_UNREADCOUNT":
+      return { ...state, unreadCounts: action.unreadCounts };
     default:
       return state;
   }

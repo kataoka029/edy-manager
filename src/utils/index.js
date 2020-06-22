@@ -9,9 +9,13 @@ export const fetchUsers = (dispatch) => {
         type: "SET_USERS",
         users: data,
       });
+      // 全部のunreadcountを表示したい
+      const unreadCounts = {};
+      data.forEach((e) => (unreadCounts[e.lineUserId] = e.unreadCount));
+      dispatch({ type: "SET_UNREADCOUNT", unreadCounts });
     })
-    .then(() => console.log("ERROR/ fetchMessages()/ "))
-    .catch((err) => console.log(err));
+    .then(() => console.log("SUCCESS/ fetchUsers()"))
+    .catch((err) => console.log("ERROR/ fetchUsers()", err));
 };
 
 export const fetchMessages = (dispatch, lineUserId) => {
@@ -23,7 +27,17 @@ export const fetchMessages = (dispatch, lineUserId) => {
         messages: data,
       });
     })
-    .then(() => console.log("SUCCESS/ fetchMessages()/ "))
+    .then(() => {
+      const messageElems = document.querySelectorAll("div.message");
+      const lastElem = messageElems[messageElems.length - 1];
+      if (!lastElem) return;
+      lastElem.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+    })
+    .then(() => console.log("SUCCESS/ fetchMessages()"))
     .catch((err) => console.log("ERROR/ fetchMessages()/ ", err));
 };
 
@@ -53,7 +67,7 @@ export const insertMessage = async (events) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("SUCCESS/ insertMessage()/ "))
+    .then(() => console.log("SUCCESS/ insertMessage()"))
     .catch((err) => console.log("ERROR/ insertMessage()/ ", err));
 };
 
@@ -65,6 +79,6 @@ export const sendMessage = (events, lineUserId) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("SUCCESS/ sendMessage()/ "))
+    .then(() => console.log("SUCCESS/ sendMessage()"))
     .catch((err) => console.log("ERROR/ sendMessage()/ ", err));
 };

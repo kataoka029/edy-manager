@@ -7,7 +7,7 @@ import { fetchUsers } from "../../../../utils";
 const LeftColumn = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  const lineUserId = useSelector((state) => state.lineUserId);
+  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
     fetchUsers(dispatch);
@@ -22,7 +22,7 @@ const LeftColumn = () => {
             lineUserId={user.lineUserId}
             userId={user.userId}
             userText={user.userText}
-            selected={lineUserId === user.lineUserId ? true : false}
+            selected={selectedLineUserId === user.lineUserId ? true : false}
             key={`user${index}`}
           />
         );

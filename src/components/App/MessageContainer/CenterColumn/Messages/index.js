@@ -13,24 +13,22 @@ const socket = io.connect(config.url);
 const Messages = () => {
   const dispatch = useDispatch();
   const messages = useSelector((state) => state.messages);
-  const lineUserId = useSelector((state) => state.lineUserId);
+  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
-  // [lineUserId]は必須
   useEffect(() => {
-    fetchMessages(dispatch, lineUserId);
-  }, [lineUserId]);
+    fetchMessages(dispatch, selectedLineUserId);
+  }, [selectedLineUserId]);
 
-  // [lineUserId]
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log(`UID: ${data.event.source.userId}`);
-      fetchMessages(dispatch, lineUserId);
+      fetchMessages(dispatch, selectedLineUserId);
       fetchUsers(dispatch);
     });
     return () => {
       socket.off("refetch");
     };
-  }, [lineUserId]);
+  }, [selectedLineUserId]);
 
   return messages.map((message, index) => (
     <Message message={message} key={`message${index}`} />
