@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import User from "./User";
 import "./style.scss";
-import { fetchUsers } from "../../../../utils";
+import { fetchUsers, readMessages } from "../../../../utils";
 
 const LeftColumn = () => {
   const dispatch = useDispatch();
@@ -10,8 +10,8 @@ const LeftColumn = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
-    fetchUsers(dispatch);
-  }, []);
+    readMessages(selectedLineUserId).then(() => fetchUsers(dispatch));
+  }, [selectedLineUserId]);
 
   return (
     <div className="left-column">

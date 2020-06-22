@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, selectedLineUserId: action.selectedLineUserId };
     case "HANDLE_INPUT":
       return { ...state, input: action.input };
-    case "SET_UNREADCOUNT":
+    case "SET_UNREADCOUNTS":
       return { ...state, unreadCounts: action.unreadCounts };
     default:
       return state;

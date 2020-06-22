@@ -4,7 +4,7 @@ import Message from "./Message";
 import config from "../../../../../config";
 import "./style.scss";
 
-import { fetchMessages, fetchUsers } from "../../../../../utils";
+import { fetchMessages, fetchUsers, readMessages } from "../../../../../utils";
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
@@ -16,14 +16,19 @@ const Messages = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
-    fetchMessages(dispatch, selectedLineUserId);
+    readMessages(selectedLineUserId);
+    fetchMessages(dispatch, selectedLineUserId).then(() =>
+      fetchUsers(dispatch)
+    );
   }, [selectedLineUserId]);
 
   useEffect(() => {
     socket.on("refetch", (data) => {
-      console.log(`UID: ${data.event.source.userId}`);
-      fetchMessages(dispatch, selectedLineUserId);
-      fetchUsers(dispatch);
+      console.log("UID - ", data.event.source.userId);
+      readMessages(selectedLineUserId);
+      fetchMessages(dispatch, selectedLineUserId).then(() =>
+        fetchUsers(dispatch)
+      );
     });
     return () => {
       socket.off("refetch");

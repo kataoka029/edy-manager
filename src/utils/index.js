@@ -5,21 +5,24 @@ export const fetchUsers = (dispatch) => {
   fetch(`${url}api/users/`)
     .then((res) => res.json())
     .then((data) => {
+      const unreadCounts = {};
+      data.forEach((e) => (unreadCounts[e.lineUserId] = e.unreadCount));
+      // console.log("data: ", data);
+      dispatch({ type: "SET_UNREADCOUNTS", unreadCounts });
+      return data;
+    })
+    .then((data) => {
       dispatch({
         type: "SET_USERS",
         users: data,
       });
-      // 全部のunreadcountを表示したい
-      const unreadCounts = {};
-      data.forEach((e) => (unreadCounts[e.lineUserId] = e.unreadCount));
-      dispatch({ type: "SET_UNREADCOUNT", unreadCounts });
     })
-    .then(() => console.log("SUCCESS/ fetchUsers()"))
-    .catch((err) => console.log("ERROR/ fetchUsers()", err));
+    .then(() => console.log("SUCCESS - fetchUsers()"))
+    .catch((err) => console.log("ERROR - fetchUsers() - ", err));
 };
 
-export const fetchMessages = (dispatch, lineUserId) => {
-  fetch(`${url}api/messages/${lineUserId}`)
+export const fetchMessages = async (dispatch, lineUserId) => {
+  await fetch(`${url}api/messages/${lineUserId}`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({
@@ -37,9 +40,19 @@ export const fetchMessages = (dispatch, lineUserId) => {
         inline: "nearest",
       });
     })
-    .then(() => console.log("SUCCESS/ fetchMessages()"))
-    .catch((err) => console.log("ERROR/ fetchMessages()/ ", err));
+    .then(() => console.log("SUCCESS - fetchMessages()"))
+    .catch((err) => console.log("ERROR - fetchMessages() - ", err));
 };
+
+export const readMessages = (lineUserId) =>
+  fetch(`${url}api/messages/${lineUserId}/read`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(() => console.log("SUCCESS - readMessages()"))
+    .catch((err) => console.log("ERROR - readMessages() - ", err));
 
 export const createPushMessage = (input, lineUserId) => {
   const events = [];
@@ -67,8 +80,8 @@ export const insertMessage = async (events) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("SUCCESS/ insertMessage()"))
-    .catch((err) => console.log("ERROR/ insertMessage()/ ", err));
+    .then(() => console.log("SUCCESS - insertMessage()"))
+    .catch((err) => console.log("ERROR - insertMessage() - ", err));
 };
 
 export const sendMessage = (events, lineUserId) => {
@@ -79,6 +92,6 @@ export const sendMessage = (events, lineUserId) => {
     },
     body: JSON.stringify(events),
   })
-    .then(() => console.log("SUCCESS/ sendMessage()"))
-    .catch((err) => console.log("ERROR/ sendMessage()/ ", err));
+    .then(() => console.log("SUCCESS - sendMessage()"))
+    .catch((err) => console.log("ERROR - sendMessage() - ", err));
 };

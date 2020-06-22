@@ -8,6 +8,7 @@ import {
   createPushMessage,
   insertMessage,
   sendMessage,
+  readMessages,
 } from "../../../../../utils";
 
 const EdyInput = () => {
@@ -17,10 +18,11 @@ const EdyInput = () => {
 
   const pushMessage = async () => {
     const events = createPushMessage(input, selectedLineUserId);
-    await insertMessage(events);
-    fetchUsers(dispatch);
-    fetchMessages(dispatch, selectedLineUserId);
     sendMessage(events, selectedLineUserId);
+    await insertMessage(events);
+    readMessages(selectedLineUserId);
+    await fetchMessages(dispatch, selectedLineUserId);
+    fetchUsers(dispatch);
     document.querySelector("textarea.text").value = "";
   };
 
