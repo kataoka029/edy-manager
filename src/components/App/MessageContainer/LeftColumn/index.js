@@ -10,6 +10,7 @@ const LeftColumn = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
+    if (!selectedLineUserId) return fetchUsers(dispatch);
     readMessages(selectedLineUserId).then(() => fetchUsers(dispatch));
   }, [selectedLineUserId]);
 

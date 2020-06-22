@@ -10,6 +10,7 @@ const MessageContainer = (props) => {
   const selectedLineUserId = props.match.params.lineUserId;
 
   useEffect(() => {
+    if (!selectedLineUserId) return;
     dispatch({
       type: "SET_LINEUSERID",
       selectedLineUserId,

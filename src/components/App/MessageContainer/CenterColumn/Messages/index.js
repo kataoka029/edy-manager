@@ -16,6 +16,7 @@ const Messages = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
+    if (!selectedLineUserId) return;
     readMessages(selectedLineUserId);
     fetchMessages(dispatch, selectedLineUserId).then(() =>
       fetchUsers(dispatch)
@@ -23,6 +24,7 @@ const Messages = () => {
   }, [selectedLineUserId]);
 
   useEffect(() => {
+    if (!selectedLineUserId) return;
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
       readMessages(selectedLineUserId);
