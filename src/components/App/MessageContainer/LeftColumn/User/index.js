@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const User = (props) => {
-  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
   const unreadCounts = useSelector((state) => state.unreadCounts);
   const unreadCount = unreadCounts[props.lineUserId];
 

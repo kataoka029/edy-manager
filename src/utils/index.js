@@ -7,7 +7,6 @@ export const fetchUsers = (dispatch) => {
     .then((data) => {
       const unreadCounts = {};
       data.forEach((e) => (unreadCounts[e.lineUserId] = e.unreadCount));
-      // console.log("data: ", data);
       dispatch({ type: "SET_UNREADCOUNTS", unreadCounts });
       return data;
     })
