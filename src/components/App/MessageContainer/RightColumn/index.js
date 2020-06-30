@@ -1,13 +1,15 @@
 import React from "react";
 import "./style.scss";
-import pandaRight from "../../../../img/panda-right.png";
+import qr from "../../../../img/qr.png";
 
 const RightColumn = () => {
   return (
     <div className="right-column">
       <section className="under-construction">
-        <p>ユーザーの詳細を表示させたく、これから頑張って作ります。</p>
-        <img src={pandaRight} alt="pandRight" />
+        <p>
+          友達追加のためのQRコードです。いずれはユーザーの注文情報を表示させる予定です。
+        </p>
+        <img src={qr} alt="pandRight" />
       </section>
     </div>
   );

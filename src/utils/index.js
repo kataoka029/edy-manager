@@ -45,7 +45,6 @@ export const fetchMessages = async (dispatch, lineUserId) => {
 };
 
 export const readMessages = (lineUserId) => {
-  // if (!lineUserId) return ;
   return fetch(`${url}api/messages/${lineUserId}/read`, {
     method: "PATCH",
     headers: {
