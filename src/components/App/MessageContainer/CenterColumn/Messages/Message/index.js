@@ -7,16 +7,19 @@ const Message = (props) => {
   const className =
     props.message.line_user_type === "user" ? "left-message" : "right-message";
 
-  const [imgUrl, setImgUrl] = useState("");
+  // const [imgUrl, setImgUrl] = useState("");
 
-  useEffect(() => {
-    fetch(`${url}api/messages/${props.message.line_message_id}/image`)
-      .then((res) => res.body)
-      .then((stream) => new Response(stream))
-      .then((response) => response.blob())
-      .then((blob) => URL.createObjectURL(blob))
-      .then((url) => setImgUrl(url));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${url}api/messages/${props.message.line_message_id}/image`)
+  //     .then((res) => res.body)
+  //     .then((stream) => new Response(stream))
+  //     .then((response) => response.blob())
+  //     .then((blob) => URL.createObjectURL(blob))
+  //     .then((url) => setImgUrl(url));
+  // }, []);
+
+  const imgUrl =
+    "https://www.dropbox.com/s/osiqw090cmy08wo/20200707122628072.jpg?dl=1";
 
   switch (props.message.line_message_type) {
     case "text":
