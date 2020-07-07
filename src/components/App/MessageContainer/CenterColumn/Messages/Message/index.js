@@ -5,7 +5,7 @@ const Message = (props) => {
   const className =
     props.message.line_user_type === "user" ? "left-message" : "right-message";
   switch (props.message.line_message_type) {
-    case "text":
+    case "image":
       return (
         <div className={`message ${className}`}>
           {props.message.line_message_text}

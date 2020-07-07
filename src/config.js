@@ -5,4 +5,7 @@ config.url =
     ? "https://edy-bot.herokuapp.com/"
     : "http://localhost:4000/";
 
+config.channelAccessToken = process.env.ACCESS_TOKEN;
+console.log("TOKEN - ", config.channelAccessToken);
+
 export default config;

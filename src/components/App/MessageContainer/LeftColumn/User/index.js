@@ -17,7 +17,7 @@ const User = (props) => {
     >
       <Link to={props.link}>
         <div className="header">
-          <span class="material-icons account">account_circle</span>
+          <span className="material-icons account">account_circle</span>
           <span className="user-id">{userId}</span>
           {unreadCount > 0 ? (
             <span className="material-icons unread">mark_chat_unread</span>
