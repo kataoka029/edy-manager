@@ -6,6 +6,9 @@ import { useSelector } from "react-redux";
 const User = (props) => {
   const unreadCounts = useSelector((state) => state.unreadCounts);
   const unreadCount = unreadCounts[props.lineUserId];
+  const userId = props.userId > 0 ? props.userId : "non-user";
+  const userText =
+    props.messageType !== "text" ? `<${props.messageType}>` : props.userText;
 
   return (
     <div
@@ -14,9 +17,8 @@ const User = (props) => {
     >
       <Link to={props.link}>
         <div className="header">
-          <span className="user-id">
-            {props.userId > 0 ? props.userId : "-"}
-          </span>
+          <span class="material-icons account">account_circle</span>
+          <span className="user-id">{userId}</span>
           {unreadCount > 0 ? (
             <span className="material-icons unread">mark_chat_unread</span>
           ) : (
@@ -28,7 +30,7 @@ const User = (props) => {
             <span className="material-icons done">done</span>
           )}
         </div>
-        <div className="text">{props.userText}</div>
+        <div className="text">{userText}</div>
         <div className="line-user-id">{props.lineUserId}</div>
       </Link>
     </div>

@@ -20,6 +20,7 @@ const LeftColumn = () => {
         return (
           <User
             link={`/messages/${user.lineUserId}`}
+            messageType={user.messageType}
             lineUserId={user.lineUserId}
             userId={user.userId}
             userText={user.userText}
