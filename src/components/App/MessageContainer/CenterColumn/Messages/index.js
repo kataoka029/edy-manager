@@ -4,7 +4,11 @@ import Message from "./Message";
 import config from "../../../../../config";
 import "./style.scss";
 
-import { fetchMessages, fetchUsers, readMessages } from "../../../../../utils";
+import {
+  fetchUserMessages,
+  fetchLatestMessages,
+  readMessages,
+} from "../../../../../utils";
 
 // socket.io-clientの設定;
 import io from "socket.io-client";
@@ -18,8 +22,8 @@ const Messages = () => {
   useEffect(() => {
     if (!selectedLineUserId) return;
     readMessages(selectedLineUserId).then(() => {
-      fetchMessages(dispatch, selectedLineUserId).then(() =>
-        fetchUsers(dispatch)
+      fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+        fetchLatestMessages(dispatch)
       );
     });
   }, [selectedLineUserId]);
@@ -29,8 +33,8 @@ const Messages = () => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
       readMessages(selectedLineUserId).then(() => {
-        fetchMessages(dispatch, selectedLineUserId).then(() =>
-          fetchUsers(dispatch)
+        fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+          fetchLatestMessages(dispatch)
         );
       });
     });

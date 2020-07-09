@@ -27,6 +27,7 @@ const Message = (props) => {
         <div className={`message ${className}`}>{props.message.content}</div>
       );
     case "image":
+      // const imgUrl = await fetch()
       return (
         <div className={`message ${className}`}>
           <img src={imgUrl} />

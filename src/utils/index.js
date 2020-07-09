@@ -1,8 +1,8 @@
 import config from "../config";
 const url = config.url;
 
-export const fetchUsers = (dispatch) => {
-  fetch(`${url}api/users/`)
+export const fetchLatestMessages = (dispatch) => {
+  fetch(`${url}api/messages/latest`)
     .then((res) => res.json())
     .then((data) => {
       const unreadCounts = {};
@@ -16,13 +16,13 @@ export const fetchUsers = (dispatch) => {
         users: data,
       });
     })
-    .then(() => console.log("SUCCESS - fetchUsers()"))
-    .catch((err) => console.log("ERROR - fetchUsers() - ", err));
+    .then(() => console.log("SUCCESS - fetchLatestMessages()"))
+    .catch((err) => console.log("ERROR - fetchLatestMessages() - ", err));
 };
 
-export const fetchMessages = async (dispatch, lineUserId) => {
+export const fetchUserMessages = async (dispatch, lineUserId) => {
   if (!lineUserId) return [];
-  await fetch(`${url}api/messages/${lineUserId}`)
+  await fetch(`${url}api/users/${lineUserId}/messages`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({
@@ -40,12 +40,12 @@ export const fetchMessages = async (dispatch, lineUserId) => {
         inline: "nearest",
       });
     })
-    .then(() => console.log("SUCCESS - fetchMessages()"))
-    .catch((err) => console.log("ERROR - fetchMessages() - ", err));
+    .then(() => console.log("SUCCESS - fetchUserMessages()"))
+    .catch((err) => console.log("ERROR - fetchUserMessages() - ", err));
 };
 
 export const readMessages = (lineUserId) => {
-  return fetch(`${url}api/messages/${lineUserId}/read`, {
+  return fetch(`${url}api/users/${lineUserId}/messages`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export const insertMessage = async (events) => {
 };
 
 export const sendMessage = (events, lineUserId) => {
-  fetch(`${url}api/messages/${lineUserId}`, {
+  fetch(`${url}api/users/${lineUserId}/messages`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

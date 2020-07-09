@@ -3,8 +3,8 @@ import "./style.scss";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
-  fetchUsers,
-  fetchMessages,
+  fetchLatestMessages,
+  fetchUserMessages,
   createPushMessage,
   insertMessage,
   sendMessage,
@@ -21,8 +21,8 @@ const EdyInput = () => {
     sendMessage(events, selectedLineUserId);
     await insertMessage(events);
     readMessages(selectedLineUserId);
-    await fetchMessages(dispatch, selectedLineUserId);
-    fetchUsers(dispatch);
+    await fetchUserMessages(dispatch, selectedLineUserId);
+    fetchLatestMessages(dispatch);
     document.querySelector("textarea.text").value = "";
   };
 
