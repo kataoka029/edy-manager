@@ -24,9 +24,7 @@ const Message = (props) => {
   switch (props.message.line_message_type) {
     case "text":
       return (
-        <div className={`message ${className}`}>
-          {props.message.line_message_text}
-        </div>
+        <div className={`message ${className}`}>{props.message.content}</div>
       );
     case "image":
       return (

@@ -23,7 +23,7 @@ const LeftColumn = () => {
             messageType={user.messageType}
             lineUserId={user.lineUserId}
             userId={user.userId}
-            userText={user.userText}
+            content={user.content}
             selected={selectedLineUserId === user.lineUserId ? true : false}
             key={`user${index}`}
           />
