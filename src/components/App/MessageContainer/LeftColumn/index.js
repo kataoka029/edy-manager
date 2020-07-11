@@ -20,13 +20,14 @@ const LeftColumn = () => {
       {users.map((user, index) => {
         return (
           <User
-            content={user.content}
+            user={user}
+            // content={user.content}
             key={`user${index}`}
             link={`/messages/${user.lineUserId}`}
-            lineUserId={user.lineUserId}
-            messageType={user.messageType}
+            // lineUserId={user.lineUserId}
+            // messageType={user.messageType}
             selected={selectedLineUserId === user.lineUserId ? true : false}
-            userId={user.userId}
+            // userId={user.userId}
           />
         );
       })}

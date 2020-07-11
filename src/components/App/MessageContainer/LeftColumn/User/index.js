@@ -5,16 +5,17 @@ import { useSelector } from "react-redux";
 import "./style.scss";
 
 const User = (props) => {
+  const user = props.user;
   const unreadCounts = useSelector((state) => state.unreadCounts);
-  const unreadCount = unreadCounts[props.lineUserId];
-  const userId = props.userId > 0 ? props.userId : "non-user";
+  const unreadCount = unreadCounts[user.lineUserId];
+  const userId = user.userId > 0 ? user.userId : "non-user";
   const content =
-    props.messageType !== "text" ? `<${props.messageType}>` : props.content;
+    user.messageType !== "text" ? `<${user.messageType}>` : user.content;
 
   return (
     <div
       className={props.selected ? "user selected" : "user"}
-      data-user-id={props.userId}
+      data-user-id={user.userId}
     >
       <Link to={props.link}>
         <div className="header">
@@ -32,7 +33,7 @@ const User = (props) => {
           )}
         </div>
         <div className="text">{content}</div>
-        <div className="line-user-id">{props.lineUserId}</div>
+        <div className="line-user-id">{user.lineUserId}</div>
       </Link>
     </div>
   );

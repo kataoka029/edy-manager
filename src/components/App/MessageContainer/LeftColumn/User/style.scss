@@ -18,10 +18,6 @@ div.user {
       align-items: center;
       display: flex;
 
-      span.line-user-id {
-        color: #808284;
-      }
-
       span.material-icons {
         font-size: 16px;
       }
@@ -69,6 +65,11 @@ div.user {
       display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    div.line-user-id {
+      color: #808284;
+      font-size: 12px;
     }
   }
 }
