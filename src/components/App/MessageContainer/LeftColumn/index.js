@@ -21,13 +21,9 @@ const LeftColumn = () => {
         return (
           <User
             user={user}
-            // content={user.content}
             key={`user${index}`}
-            link={`/messages/${user.lineUserId}`}
-            // lineUserId={user.lineUserId}
-            // messageType={user.messageType}
-            selected={selectedLineUserId === user.lineUserId ? true : false}
-            // userId={user.userId}
+            link={`/messages/${user.line_user_id}`}
+            selected={selectedLineUserId === user.line_user_id ? true : false}
           />
         );
       })}

@@ -40,7 +40,11 @@ const Messages = () => {
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
-      updateUserMessages(dispatch, selectedLineUserId);
+      if (!selectedLineUserId) {
+        updateContents().then(() => fetchLatestMessages(dispatch));
+      } else {
+        updateUserMessages(dispatch, selectedLineUserId);
+      }
     });
 
     return () => {

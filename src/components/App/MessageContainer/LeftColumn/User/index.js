@@ -8,9 +8,8 @@ const User = (props) => {
   const user = props.user;
   const unreadCounts = useSelector((state) => state.unreadCounts);
   const unreadCount = unreadCounts[user.lineUserId];
-  const userId = user.userId > 0 ? user.userId : "non-user";
-  const content =
-    user.messageType !== "text" ? `<${user.messageType}>` : user.content;
+  const userId = user.user_id > 0 ? user.user_id : "non-user";
+  const text = user.type !== "text" ? `<${user.type}>` : user.text;
 
   return (
     <div
@@ -32,8 +31,8 @@ const User = (props) => {
             <span className="material-icons done">done</span>
           )}
         </div>
-        <div className="text">{content}</div>
-        <div className="line-user-id">{user.lineUserId}</div>
+        <div className="text">{text}</div>
+        <div className="line-user-id">{user.line_user_id}</div>
       </Link>
     </div>
   );
