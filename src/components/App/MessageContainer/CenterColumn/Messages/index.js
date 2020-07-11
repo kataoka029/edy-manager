@@ -32,7 +32,7 @@ const Messages = () => {
   }, [selectedLineUserId]);
 
   useEffect(() => {
-    if (!selectedLineUserId) return;
+    // if (!selectedLineUserId) return;
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
       updateContents(selectedLineUserId).then(() => {
