@@ -1,4 +1,5 @@
 import config from "../config";
+
 const url = config.url;
 
 export const fetchLatestMessages = (dispatch) => {
@@ -44,23 +45,7 @@ export const fetchUserMessages = async (dispatch, lineUserId) => {
     .catch((err) => console.log("ERROR - fetchUserMessages() - ", err));
 };
 
-export const readMessages = (lineUserId) => {
-  return fetch(`${url}api/users/${lineUserId}/messages/read`, {
-    method: "PATCH",
-  })
-    .then(() => console.log("SUCCESS - readMessages()"))
-    .catch((err) => console.log("ERROR - readMessages() - ", err));
-};
-
-export const updateContents = () => {
-  return fetch(`${url}api/messages/content`, {
-    method: "PATCH",
-  })
-    .then(() => console.log("SUCCESS - updateContents()"))
-    .catch((err) => console.log("ERROR - updateContents() - ", err));
-};
-
-export const createPushMessage = (input, lineUserId) => {
+export const createPushMessages = (input, lineUserId) => {
   const events = [];
   events[0] = {
     type: "message",
@@ -78,7 +63,7 @@ export const createPushMessage = (input, lineUserId) => {
   return events;
 };
 
-export const insertMessage = async (events) => {
+export const insertMessages = async (events) => {
   await fetch(`${url}api/messages`, {
     method: "POST",
     headers: {
@@ -90,7 +75,7 @@ export const insertMessage = async (events) => {
     .catch((err) => console.log("ERROR - insertMessage() - ", err));
 };
 
-export const sendMessage = (events, lineUserId) => {
+export const sendMessages = (events, lineUserId) => {
   fetch(`${url}api/users/${lineUserId}/messages`, {
     method: "POST",
     headers: {
@@ -100,4 +85,20 @@ export const sendMessage = (events, lineUserId) => {
   })
     .then(() => console.log("SUCCESS - sendMessage()"))
     .catch((err) => console.log("ERROR - sendMessage() - ", err));
+};
+
+export const readMessages = (lineUserId) => {
+  return fetch(`${url}api/users/${lineUserId}/messages/read`, {
+    method: "PATCH",
+  })
+    .then(() => console.log("SUCCESS - readMessages()"))
+    .catch((err) => console.log("ERROR - readMessages() - ", err));
+};
+
+export const updateContents = () => {
+  return fetch(`${url}api/messages/content`, {
+    method: "PATCH",
+  })
+    .then(() => console.log("SUCCESS - updateContents()"))
+    .catch((err) => console.log("ERROR - updateContents() - ", err));
 };

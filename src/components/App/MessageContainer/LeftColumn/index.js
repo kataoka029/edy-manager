@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import User from "./User";
+import { useDispatch, useSelector } from "react-redux";
+
 import "./style.scss";
 import { fetchLatestMessages, readMessages } from "../../../../utils";
+import User from "./User";
 
 const LeftColumn = () => {
   const dispatch = useDispatch();
@@ -19,13 +20,13 @@ const LeftColumn = () => {
       {users.map((user, index) => {
         return (
           <User
-            link={`/messages/${user.lineUserId}`}
-            messageType={user.messageType}
-            lineUserId={user.lineUserId}
-            userId={user.userId}
             content={user.content}
-            selected={selectedLineUserId === user.lineUserId ? true : false}
             key={`user${index}`}
+            link={`/messages/${user.lineUserId}`}
+            lineUserId={user.lineUserId}
+            messageType={user.messageType}
+            selected={selectedLineUserId === user.lineUserId ? true : false}
+            userId={user.userId}
           />
         );
       })}

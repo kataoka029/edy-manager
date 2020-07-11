@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./style.scss";
 import qr from "../../../../img/qr.png";
 

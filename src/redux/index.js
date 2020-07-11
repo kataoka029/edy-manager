@@ -1,11 +1,11 @@
 import { createStore } from "redux";
 
 const initialState = {
-  messages: [],
   input: "",
-  users: [],
+  messages: [],
   selectedLineUserId: "",
   unreadCounts: {},
+  users: [],
 };
 
 const reducer = (state = initialState, action) => {

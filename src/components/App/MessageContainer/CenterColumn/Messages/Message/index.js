@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+
 import "./style.scss";
-import config from "../../../../../../config";
-const url = config.url;
 
 const Message = (props) => {
+  const message = props.message;
   const className =
-    props.message.line_user_type === "user" ? "left-message" : "right-message";
+    message.line_user_type === "user" ? "left-message" : "right-message";
 
-  switch (props.message.line_message_type) {
+  switch (message.line_message_type) {
     case "text":
-      return (
-        <div className={`message ${className}`}>{props.message.content}</div>
-      );
+      return <div className={`message ${className}`}>{message.content}</div>;
+
     case "image":
       const imageUrl = props.message.content;
       return (
@@ -19,10 +18,11 @@ const Message = (props) => {
           <img src={imageUrl} />
         </div>
       );
+
     default:
       return (
         <div className={`message ${className}`}>
-          {`<${props.message.line_message_type}>`}
+          {`<${message.line_message_type}>`}
         </div>
       );
   }

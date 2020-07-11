@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import "./style.scss";
-import LeftColumn from "./LeftColumn";
-import CenterContainer from "./CenterColumn";
-import RightColumn from "./RightColumn";
 import { useDispatch } from "react-redux";
+
+import "./style.scss";
+import CenterContainer from "./CenterColumn";
+import LeftColumn from "./LeftColumn";
+import RightColumn from "./RightColumn";
 
 const MessageContainer = (props) => {
   const dispatch = useDispatch();

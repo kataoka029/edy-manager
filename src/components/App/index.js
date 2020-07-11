@@ -1,9 +1,10 @@
 import React from "react";
-import NavBar from "./NavBar";
-import MessageContainer from "./MessageContainer";
-import OrderContainer from "./OrderContainer";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import "./style.scss";
+import MessageContainer from "./MessageContainer";
+import NavBar from "./NavBar";
+import OrderContainer from "./OrderContainer";
 
 const App = () => {
   return (

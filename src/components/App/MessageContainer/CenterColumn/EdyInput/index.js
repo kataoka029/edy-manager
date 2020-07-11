@@ -1,14 +1,14 @@
 import React from "react";
-import "./style.scss";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+import "./style.scss";
 import {
+  createPushMessages,
   fetchLatestMessages,
   fetchUserMessages,
-  createPushMessage,
-  insertMessage,
-  sendMessage,
+  insertMessages,
   readMessages,
+  sendMessages,
 } from "../../../../../utils";
 
 const EdyInput = () => {
@@ -17,9 +17,9 @@ const EdyInput = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   const pushMessage = async () => {
-    const events = createPushMessage(input, selectedLineUserId);
-    sendMessage(events, selectedLineUserId);
-    await insertMessage(events);
+    const events = createPushMessages(input, selectedLineUserId);
+    sendMessages(events, selectedLineUserId);
+    await insertMessages(events);
     readMessages(selectedLineUserId);
     await fetchUserMessages(dispatch, selectedLineUserId);
     fetchLatestMessages(dispatch);

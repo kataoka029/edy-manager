@@ -1,19 +1,28 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Message from "./Message";
-import config from "../../../../../config";
-import "./style.scss";
 
+import "./style.scss";
+import config from "../../../../../config";
 import {
-  fetchUserMessages,
   fetchLatestMessages,
+  fetchUserMessages,
   readMessages,
   updateContents,
 } from "../../../../../utils";
+import Message from "./Message";
 
-// socket.io-clientの設定;
 import io from "socket.io-client";
 const socket = io.connect(config.url);
+
+const updateUserMessages = (dispatch, selectedLineUserId) => {
+  updateContents().then(() => {
+    readMessages(selectedLineUserId).then(() => {
+      fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+        fetchLatestMessages(dispatch)
+      );
+    });
+  });
+};
 
 const Messages = () => {
   const dispatch = useDispatch();
@@ -24,27 +33,16 @@ const Messages = () => {
     if (!selectedLineUserId) {
       updateContents().then(() => fetchLatestMessages(dispatch));
     } else {
-      updateContents().then(() => {
-        readMessages(selectedLineUserId).then(() => {
-          fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-            fetchLatestMessages(dispatch)
-          );
-        });
-      });
+      updateUserMessages(dispatch, selectedLineUserId);
     }
   }, [selectedLineUserId]);
 
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
-      updateContents().then(() => {
-        readMessages(selectedLineUserId).then(() => {
-          fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-            fetchLatestMessages(dispatch)
-          );
-        });
-      });
+      updateUserMessages(dispatch, selectedLineUserId);
     });
+
     return () => {
       socket.off("refetch");
     };
