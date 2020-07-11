@@ -6,7 +6,7 @@ import "./style.scss";
 const Message = (props) => {
   const message = props.message;
   const className =
-    message.line_user_type === "user" ? "left-message" : "right-message";
+    message.line_message_id === "_" ? "right-message" : "left-message";
   const m = moment(message.created_at);
 
   switch (message.type) {
