@@ -52,8 +52,8 @@ export const readMessages = (lineUserId) => {
     .catch((err) => console.log("ERROR - readMessages() - ", err));
 };
 
-export const updateContents = (lineUserId) => {
-  return fetch(`${url}api/users/${lineUserId}/messages/content`, {
+export const updateContents = () => {
+  return fetch(`${url}api/messages`, {
     method: "PATCH",
   })
     .then(() => console.log("SUCCESS - updateContents()"))

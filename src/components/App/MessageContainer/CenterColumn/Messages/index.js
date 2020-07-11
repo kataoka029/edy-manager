@@ -21,8 +21,10 @@ const Messages = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
-    if (!selectedLineUserId) return;
-    updateContents(selectedLineUserId).then(() => {
+    if (!selectedLineUserId) {
+      return updateContents().then(() => fetchLatestMessages(dispatch));
+    }
+    updateContents().then(() => {
       readMessages(selectedLineUserId).then(() => {
         fetchUserMessages(dispatch, selectedLineUserId).then(() =>
           fetchLatestMessages(dispatch)
@@ -32,10 +34,9 @@ const Messages = () => {
   }, [selectedLineUserId]);
 
   useEffect(() => {
-    // if (!selectedLineUserId) return;
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
-      updateContents(selectedLineUserId).then(() => {
+      updateContents().then(() => {
         readMessages(selectedLineUserId).then(() => {
           fetchUserMessages(dispatch, selectedLineUserId).then(() =>
             fetchLatestMessages(dispatch)
