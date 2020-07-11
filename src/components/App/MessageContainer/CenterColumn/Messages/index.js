@@ -22,15 +22,16 @@ const Messages = () => {
 
   useEffect(() => {
     if (!selectedLineUserId) {
-      return updateContents().then(() => fetchLatestMessages(dispatch));
-    }
-    updateContents().then(() => {
-      readMessages(selectedLineUserId).then(() => {
-        fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-          fetchLatestMessages(dispatch)
-        );
+      updateContents().then(() => fetchLatestMessages(dispatch));
+    } else {
+      updateContents().then(() => {
+        readMessages(selectedLineUserId).then(() => {
+          fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+            fetchLatestMessages(dispatch)
+          );
+        });
       });
-    });
+    }
   }, [selectedLineUserId]);
 
   useEffect(() => {

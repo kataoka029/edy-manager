@@ -53,7 +53,7 @@ export const readMessages = (lineUserId) => {
 };
 
 export const updateContents = () => {
-  return fetch(`${url}api/messages`, {
+  return fetch(`${url}api/messages/content`, {
     method: "PATCH",
   })
     .then(() => console.log("SUCCESS - updateContents()"))
