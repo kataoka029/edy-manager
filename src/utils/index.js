@@ -45,14 +45,19 @@ export const fetchUserMessages = async (dispatch, lineUserId) => {
 };
 
 export const readMessages = (lineUserId) => {
-  return fetch(`${url}api/users/${lineUserId}/messages`, {
+  return fetch(`${url}api/users/${lineUserId}/messages/read`, {
     method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
   })
     .then(() => console.log("SUCCESS - readMessages()"))
     .catch((err) => console.log("ERROR - readMessages() - ", err));
+};
+
+export const updateContents = (lineUserId) => {
+  return fetch(`${url}api/users/${lineUserId}/messages/content`, {
+    method: "PATCH",
+  })
+    .then(() => console.log("SUCCESS - updateContents()"))
+    .catch((err) => console.log("ERROR - updateContents() - ", err));
 };
 
 export const createPushMessage = (input, lineUserId) => {

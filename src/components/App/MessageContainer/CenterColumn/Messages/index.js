@@ -8,6 +8,7 @@ import {
   fetchUserMessages,
   fetchLatestMessages,
   readMessages,
+  updateContents,
 } from "../../../../../utils";
 
 // socket.io-clientの設定;
@@ -21,10 +22,12 @@ const Messages = () => {
 
   useEffect(() => {
     if (!selectedLineUserId) return;
-    readMessages(selectedLineUserId).then(() => {
-      fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-        fetchLatestMessages(dispatch)
-      );
+    updateContents(selectedLineUserId).then(() => {
+      readMessages(selectedLineUserId).then(() => {
+        fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+          fetchLatestMessages(dispatch)
+        );
+      });
     });
   }, [selectedLineUserId]);
 
@@ -32,10 +35,12 @@ const Messages = () => {
     if (!selectedLineUserId) return;
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
-      readMessages(selectedLineUserId).then(() => {
-        fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-          fetchLatestMessages(dispatch)
-        );
+      updateContents(selectedLineUserId).then(() => {
+        readMessages(selectedLineUserId).then(() => {
+          fetchUserMessages(dispatch, selectedLineUserId).then(() =>
+            fetchLatestMessages(dispatch)
+          );
+        });
       });
     });
     return () => {
