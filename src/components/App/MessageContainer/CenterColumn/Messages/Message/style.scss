@@ -3,15 +3,15 @@ div.message {
   display: flex;
   margin-bottom: 25px;
 
+  &:last-child {
+    margin-bottom: 0px;
+  }
+
   div.bubble {
     border-radius: 10px;
     padding: 20px;
     white-space: pre-wrap;
     width: 55%;
-
-    &:last-child {
-      margin-bottom: 0px;
-    }
 
     img {
       max-width: 100%;
