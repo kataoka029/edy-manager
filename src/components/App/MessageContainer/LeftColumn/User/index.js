@@ -7,10 +7,9 @@ import "./style.scss";
 const User = (props) => {
   const user = props.user;
   const unreadCounts = useSelector((state) => state.unreadCounts);
-  const unreadCount = unreadCounts[user.lineUserId];
+  const unreadCount = unreadCounts[user.line_user_id];
   const userId = user.user_id > 0 ? user.user_id : "non-user";
   const text = user.type !== "text" ? `<${user.type}>` : user.text;
-
   return (
     <div
       className={props.selected ? "user selected" : "user"}

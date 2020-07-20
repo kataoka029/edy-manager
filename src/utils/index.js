@@ -7,7 +7,7 @@ export const fetchLatestMessages = (dispatch) => {
     .then((res) => res.json())
     .then((data) => {
       const unreadCounts = {};
-      data.forEach((e) => (unreadCounts[e.lineUserId] = e.unreadCount));
+      data.forEach((e) => (unreadCounts[e.line_user_id] = e.unread_count));
       dispatch({ type: "SET_UNREADCOUNTS", unreadCounts });
       return data;
     })
