@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./style.scss";
 import { fetchLatestMessages, readMessages } from "../../../../utils";
-import User from "./User";
+import LatestMessage from "./LatestMessage";
 
 const LeftColumn = () => {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.users);
+  const latestMessages = useSelector((state) => state.latestMessages);
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   useEffect(() => {
@@ -17,13 +17,15 @@ const LeftColumn = () => {
 
   return (
     <div className="left-column">
-      {users.map((user, index) => {
+      {latestMessages.map((latestMessage, index) => {
         return (
-          <User
-            user={user}
-            key={`user${index}`}
-            link={`/messages/${user.line_user_id}`}
-            selected={selectedLineUserId === user.line_user_id ? true : false}
+          <LatestMessage
+            latestMessage={latestMessage}
+            key={`latestMessage${index}`}
+            link={`/messages/${latestMessage.line_user_id}`}
+            selected={
+              selectedLineUserId === latestMessage.line_user_id ? true : false
+            }
           />
         );
       })}

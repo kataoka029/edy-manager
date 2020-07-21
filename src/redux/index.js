@@ -5,7 +5,7 @@ const initialState = {
   messages: [],
   selectedLineUserId: "",
   unreadCounts: {},
-  users: [],
+  latestMessages: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -14,8 +14,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, messages: action.messages };
     case "ADD_MESSAGE":
       return { ...state, messages: [...state.messages, action.message] };
-    case "SET_USERS":
-      return { ...state, users: action.users };
+    case "SET_LATESTMESSAGES":
+      return { ...state, latestMessages: action.latestMessages };
     case "SET_LINEUSERID":
       return { ...state, selectedLineUserId: action.selectedLineUserId };
     case "HANDLE_INPUT":

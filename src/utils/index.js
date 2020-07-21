@@ -13,8 +13,8 @@ export const fetchLatestMessages = (dispatch) => {
     })
     .then((data) => {
       dispatch({
-        type: "SET_USERS",
-        users: data,
+        type: "SET_LATESTMESSAGES",
+        latestMessages: data,
       });
     })
     .then(() => console.log("SUCCESS - fetchLatestMessages()"))

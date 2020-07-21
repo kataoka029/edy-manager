@@ -4,16 +4,19 @@ import { useSelector } from "react-redux";
 
 import "./style.scss";
 
-const User = (props) => {
-  const user = props.user;
+const LatestMessage = (props) => {
+  const latestMessage = props.latestMessage;
   const unreadCounts = useSelector((state) => state.unreadCounts);
-  const unreadCount = unreadCounts[user.line_user_id];
-  const userId = user.user_id > 0 ? user.user_id : "non-user";
-  const text = user.type !== "text" ? `<${user.type}>` : user.text;
+  const unreadCount = unreadCounts[latestMessage.line_user_id];
+  const userId = latestMessage.user_id > 0 ? latestMessage.user_id : "non-user";
+  const text =
+    latestMessage.type !== "text"
+      ? `<${latestMessage.type}>`
+      : latestMessage.text;
   return (
     <div
       className={props.selected ? "user selected" : "user"}
-      data-user-id={user.userId}
+      data-user-id={latestMessage.userId}
     >
       <Link to={props.link}>
         <div className="header">
@@ -31,10 +34,10 @@ const User = (props) => {
           )}
         </div>
         <div className="text">{text}</div>
-        <div className="line-user-id">{user.line_user_id}</div>
+        <div className="line-user-id">{latestMessage.line_user_id}</div>
       </Link>
     </div>
   );
 };
 
-export default User;
+export default LatestMessage;
