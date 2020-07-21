@@ -7,7 +7,7 @@ import {
   fetchLatestMessages,
   fetchUserMessages,
   readMessages,
-  updateContents,
+  updateImageUrls,
 } from "../../../../../utils";
 import Message from "./Message";
 
@@ -15,7 +15,7 @@ import io from "socket.io-client";
 const socket = io.connect(config.url);
 
 const updateUserMessages = (dispatch, selectedLineUserId) => {
-  updateContents().then(() => {
+  updateImageUrls().then(() => {
     readMessages(selectedLineUserId).then(() => {
       fetchUserMessages(dispatch, selectedLineUserId).then(() =>
         fetchLatestMessages(dispatch)
@@ -31,7 +31,7 @@ const Messages = () => {
 
   useEffect(() => {
     if (!selectedLineUserId) {
-      updateContents().then(() => fetchLatestMessages(dispatch));
+      updateImageUrls().then(() => fetchLatestMessages(dispatch));
     } else {
       updateUserMessages(dispatch, selectedLineUserId);
     }
@@ -41,7 +41,7 @@ const Messages = () => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
       if (!selectedLineUserId) {
-        updateContents().then(() => fetchLatestMessages(dispatch));
+        updateImageUrls().then(() => fetchLatestMessages(dispatch));
       } else {
         updateUserMessages(dispatch, selectedLineUserId);
       }

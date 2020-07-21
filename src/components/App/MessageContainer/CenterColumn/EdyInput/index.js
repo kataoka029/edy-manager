@@ -17,6 +17,7 @@ const EdyInput = () => {
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
 
   const pushMessage = async () => {
+    if (!input) return alert("メッセージを入力してください。");
     const events = createPushMessages(input, selectedLineUserId);
     sendMessages(events, selectedLineUserId);
     await insertMessages(events);
@@ -24,6 +25,7 @@ const EdyInput = () => {
     await fetchUserMessages(dispatch, selectedLineUserId);
     fetchLatestMessages(dispatch);
     document.querySelector("textarea.text").value = "";
+    dispatch({ type: "HANDLE_INPUT", input: "" });
   };
 
   return (
@@ -43,7 +45,7 @@ const EdyInput = () => {
       </div>
       <textarea
         className="text"
-        placeholder="メッセージを入力"
+        placeholder="メッセージを入力（「shift」+「enter」で改行）"
         onChange={(e) =>
           dispatch({ type: "HANDLE_INPUT", input: e.target.value })
         }

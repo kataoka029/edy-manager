@@ -95,10 +95,10 @@ export const readMessages = (lineUserId) => {
     .catch((err) => console.log("ERROR - readMessages() - ", err));
 };
 
-export const updateContents = () => {
-  return fetch(`${url}api/messages/content`, {
+export const updateImageUrls = () => {
+  return fetch(`${url}api/messages/url`, {
     method: "PATCH",
   })
-    .then(() => console.log("SUCCESS - updateContents()"))
-    .catch((err) => console.log("ERROR - updateContents() - ", err));
+    .then(() => console.log("SUCCESS - updateImageUrls()"))
+    .catch((err) => console.log("ERROR - updateImageUrls()", err));
 };
