@@ -1,8 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./style.scss";
-import { fetchLatestMessages, toggleToCheck } from "../../../../../utils";
+import {
+  fetchLatestMessages,
+  fetchUserMessages,
+  toggleToCheck,
+} from "../../../../../utils";
 
 const Status = () => {
   const dispatch = useDispatch();
@@ -16,7 +20,18 @@ const Status = () => {
 
   return (
     <div className="status">
-      <span className="material-icons refresh">refresh</span>
+      <span
+        className="material-icons refresh"
+        onClick={() => {
+          fetchUserMessages(dispatch, selectedLineUserId);
+          setTimeout(
+            () => fetchUserMessages(dispatch, selectedLineUserId),
+            2000
+          );
+        }}
+      >
+        refresh
+      </span>
       <span
         className={`material-icons ${className}`}
         onClick={() => {

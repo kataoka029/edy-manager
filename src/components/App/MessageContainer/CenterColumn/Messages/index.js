@@ -44,6 +44,8 @@ const Messages = () => {
         updateImageUrls().then(() => fetchLatestMessages(dispatch));
       } else {
         updateUserMessages(dispatch, selectedLineUserId);
+        setTimeout(() => updateImageUrls(), 200);
+        setTimeout(() => updateImageUrls(), 2000);
       }
     });
 
