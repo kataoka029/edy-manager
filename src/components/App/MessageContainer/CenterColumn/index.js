@@ -3,13 +3,15 @@ import React from "react";
 import "./style.scss";
 import Messages from "./Messages";
 import EdyInput from "./EdyInput";
+import Status from "./Status";
+
+const to_check = true;
 
 const CenterColumn = () => {
   return (
     <div className="center-column">
-      <div className="messages">
-        <Messages />
-      </div>
+      <Status />
+      <Messages />
       <EdyInput />
     </div>
   );

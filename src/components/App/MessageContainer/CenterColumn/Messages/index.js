@@ -52,9 +52,13 @@ const Messages = () => {
     };
   }, [selectedLineUserId]);
 
-  return messages.map((message, index) => (
-    <Message message={message} key={`message${index}`} />
-  ));
+  return (
+    <div className="messages">
+      {messages.map((message, index) => (
+        <Message message={message} key={`message${index}`} />
+      ))}
+    </div>
+  );
 };
 
 export default Messages;
