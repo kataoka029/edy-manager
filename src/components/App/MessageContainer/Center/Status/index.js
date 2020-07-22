@@ -40,7 +40,7 @@ const Status = () => {
           );
         }}
       >
-        priority_high
+        error
       </span>
     </div>
   );

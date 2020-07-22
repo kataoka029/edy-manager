@@ -8,6 +8,7 @@ div.status {
   span.material-icons {
     cursor: pointer;
     margin-left: 5px;
+    user-select: none;
   }
 
   span.to-check {
@@ -19,6 +20,5 @@ div.status {
   }
 
   span.refresh {
-    color: #336b87;
   }
 }

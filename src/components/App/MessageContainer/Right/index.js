@@ -3,9 +3,9 @@ import React from "react";
 import "./style.scss";
 import qr from "../../../../img/qr.png";
 
-const RightColumn = () => {
+const Right = () => {
   return (
-    <div className="right-column">
+    <div className="right">
       <section className="under-construction">
         <p>
           友達追加のためのQRコードです。いずれはユーザーの注文情報を表示させる予定です。
@@ -16,4 +16,4 @@ const RightColumn = () => {
   );
 };
 
-export default RightColumn;
+export default Right;

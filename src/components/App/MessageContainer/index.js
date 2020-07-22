@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import "./style.scss";
-import CenterContainer from "./CenterColumn";
-import LeftColumn from "./LeftColumn";
-import RightColumn from "./RightColumn";
+import Center from "./Center";
+import Left from "./Left";
+import Right from "./Right";
 
 const MessageContainer = (props) => {
   const dispatch = useDispatch();
@@ -20,9 +20,9 @@ const MessageContainer = (props) => {
 
   return (
     <div className="message-container">
-      <LeftColumn />
-      <CenterContainer />
-      <RightColumn />
+      <Left />
+      <Center />
+      <Right />
     </div>
   );
 };

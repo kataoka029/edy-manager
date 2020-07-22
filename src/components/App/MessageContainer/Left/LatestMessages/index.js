@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style.scss";
-import { fetchLatestMessages, readMessages } from "../../../../utils";
+import { fetchLatestMessages, readMessages } from "../../../../../utils";
 import LatestMessage from "./LatestMessage";
 
-const LeftColumn = () => {
+const LatestMessages = () => {
   const dispatch = useDispatch();
   const latestMessages = useSelector((state) => state.latestMessages);
   const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
@@ -16,7 +16,7 @@ const LeftColumn = () => {
   }, [selectedLineUserId]);
 
   return (
-    <div className="left-column">
+    <div className="latest-messages">
       {latestMessages.map((latestMessage, index) => {
         return (
           <LatestMessage
@@ -33,4 +33,4 @@ const LeftColumn = () => {
   );
 };
 
-export default LeftColumn;
+export default LatestMessages;

@@ -5,11 +5,9 @@ import Messages from "./Messages";
 import EdyInput from "./EdyInput";
 import Status from "./Status";
 
-const to_check = true;
-
-const CenterColumn = () => {
+const Center = () => {
   return (
-    <div className="center-column">
+    <div className="center">
       <Status />
       <Messages />
       <EdyInput />
@@ -17,4 +15,4 @@ const CenterColumn = () => {
   );
 };
 
-export default CenterColumn;
+export default Center;
