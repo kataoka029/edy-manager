@@ -104,7 +104,6 @@ export const updateImageUrls = () => {
 };
 
 export const toggleToCheck = (lineUserId, toCheck) => {
-  console.log("INSIDE toggleToCheck() - ", JSON.stringify({ toCheck }));
   return fetch(`${url}api/users/${lineUserId}/check`, {
     method: "PATCH",
     body: JSON.stringify({ toCheck }),

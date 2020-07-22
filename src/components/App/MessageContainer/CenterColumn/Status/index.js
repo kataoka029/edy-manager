@@ -20,8 +20,9 @@ const Status = () => {
       <span
         className={`material-icons ${className}`}
         onClick={() => {
-          toggleToCheck(selectedLineUserId);
-          setTimeout(() => fetchLatestMessages(dispatch), 1000);
+          toggleToCheck(selectedLineUserId).then(() =>
+            setTimeout(() => fetchLatestMessages(dispatch), 200)
+          );
         }}
       >
         priority_high
