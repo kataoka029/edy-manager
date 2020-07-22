@@ -23,7 +23,11 @@ const Message = (props) => {
       return (
         <div className={`message ${className}`}>
           <div className="bubble">
-            <img src={imageUrl} />
+            {imageUrl === "_" ? (
+              <div class="loader">Loading...</div>
+            ) : (
+              <img src={imageUrl} />
+            )}
           </div>
           <div className="time">{m.fromNow()}</div>
         </div>

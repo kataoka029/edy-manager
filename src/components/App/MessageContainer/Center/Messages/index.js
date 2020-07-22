@@ -40,13 +40,14 @@ const Messages = () => {
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
-      if (!selectedLineUserId) {
-        updateImageUrls().then(() => fetchLatestMessages(dispatch));
-      } else {
+
+      if (selectedLineUserId === data.event.source.userId) {
         updateUserMessages(dispatch, selectedLineUserId);
-        setTimeout(() => updateImageUrls(), 200);
-        setTimeout(() => updateImageUrls(), 2000);
+      } else {
+        updateImageUrls().then(() => fetchLatestMessages(dispatch));
       }
+      setTimeout(() => updateImageUrls(), 200);
+      setTimeout(() => updateImageUrls(), 2000);
     });
 
     return () => {
