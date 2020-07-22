@@ -27,11 +27,15 @@ const LatestMessage = (props) => {
           ) : (
             <span className="material-icons read">mark_chat_read</span>
           )}
-          {latestMessage.to_check ? (
-            <span className="material-icons to-check">announcement</span>
-          ) : (
-            <span className="material-icons done">announcement</span>
-          )}
+          <span
+            className={
+              latestMessage.to_check
+                ? "material-icons to-check"
+                : "material-icons done"
+            }
+          >
+            announcement
+          </span>
         </div>
         <div className="text">{text}</div>
         <div className="line-user-id">{latestMessage.line_user_id}</div>

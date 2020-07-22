@@ -102,3 +102,13 @@ export const updateImageUrls = () => {
     .then(() => console.log("SUCCESS - updateImageUrls()"))
     .catch((err) => console.log("ERROR - updateImageUrls()", err));
 };
+
+export const toggleToCheck = (lineUserId, toCheck) => {
+  console.log("INSIDE toggleToCheck() - ", JSON.stringify({ toCheck }));
+  return fetch(`${url}api/users/${lineUserId}/check`, {
+    method: "PATCH",
+    body: JSON.stringify({ toCheck }),
+  })
+    .then(() => console.log("SUCCESS - toggleToCheck()"))
+    .catch((err) => console.log("ERROR - toggleToCheck() - ", err));
+};

@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./style.scss";
-
-const to_check = false;
+import { fetchLatestMessages, toggleToCheck } from "../../../../../utils";
 
 const Status = () => {
+  const dispatch = useDispatch();
+  const latestMessages = useSelector((state) => state.latestMessages);
+  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
+  const targetMessage = latestMessages.find(
+    (latestMessage) => latestMessage.line_user_id === selectedLineUserId
+  );
+  const toCheck = targetMessage ? targetMessage.to_check : 0;
+  const className = toCheck ? "to-check" : "done";
+
   return (
     <div className="status">
       <span className="material-icons refresh">refresh</span>
-      {to_check ? (
-        <span className="material-icons to-check">priority_high</span>
-      ) : (
-        <span className="material-icons done">priority_high</span>
-      )}
+      <span
+        className={`material-icons ${className}`}
+        onClick={() => {
+          toggleToCheck(selectedLineUserId);
+          setTimeout(() => fetchLatestMessages(dispatch), 1000);
+        }}
+      >
+        priority_high
+      </span>
     </div>
   );
 };
