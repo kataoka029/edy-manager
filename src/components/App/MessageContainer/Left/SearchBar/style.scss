@@ -2,9 +2,9 @@ div.search-bar {
   align-items: center;
   border-bottom: 1px solid #f5f5f5;
   display: flex;
-  height: 40px;
+  height: 50px;
 
-  span.user {
+  span.users {
     color: #336b87;
     margin-left: 15px;
   }
@@ -14,7 +14,8 @@ div.search-bar {
     user-select: none;
   }
 
-  span.all {
+  span.line-users {
+    color: #cccccc;
     margin-left: 15px;
   }
 
@@ -23,7 +24,7 @@ div.search-bar {
     margin-left: 5px;
   }
 
-  span.done {
+  span.all {
     color: #cccccc;
     margin-left: 5px;
   }

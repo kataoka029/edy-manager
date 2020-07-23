@@ -3,10 +3,10 @@ import React from "react";
 import "./style.scss";
 
 const SearchBar = () => {
-  const user = false;
-  const userClass = user ? "user" : "all";
+  const users = false;
+  const userClass = users ? "users" : "line-users";
   const toCheck = false;
-  const toCheckClass = toCheck ? "to_check" : "done";
+  const toCheckClass = toCheck ? "to_check" : "all";
 
   return (
     <div className="search-bar">
