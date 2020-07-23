@@ -1,14 +1,14 @@
 import React from "react";
 
 import "./style.scss";
-import LatestMessages from "./LatestMessages";
+import Users from "./Users";
 import SearchBar from "./SearchBar";
 
 const Left = () => {
   return (
     <div className="left">
       <SearchBar />
-      <LatestMessages />
+      <Users />
     </div>
   );
 };

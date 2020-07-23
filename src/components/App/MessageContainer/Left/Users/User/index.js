@@ -4,24 +4,21 @@ import { useSelector } from "react-redux";
 
 import "./style.scss";
 
-const LatestMessage = (props) => {
-  const latestMessage = props.latestMessage;
-  const userClass = latestMessage.first_name !== "_" ? "user" : "non-user";
+const User = (props) => {
+  const user = props.user;
+  const userClass = user.first_name !== "_" ? "user" : "non-user";
   const unreadCounts = useSelector((state) => state.unreadCounts);
-  const unreadCount = unreadCounts[latestMessage.line_user_id];
+  const unreadCount = unreadCounts[user.line_user_id];
   const userName =
-    latestMessage.first_name !== "_"
-      ? `${latestMessage.first_name} ${latestMessage.last_name}`
-      : latestMessage.profile_name;
-  const text =
-    latestMessage.type !== "text"
-      ? `<${latestMessage.type}>`
-      : latestMessage.text;
+    user.first_name !== "_"
+      ? `${user.first_name} ${user.last_name}`
+      : user.profile_name;
+  const text = user.text_type !== "text" ? `<${user.text_type}>` : user.text;
 
   return (
     <div
-      className={props.selected ? "latest-message selected" : "latest-message"}
-      data-user-id={latestMessage.userId}
+      className={props.selected ? "user selected" : "user"}
+      data-user-id={user.userId}
     >
       <Link to={props.link}>
         <div className="header">
@@ -34,19 +31,17 @@ const LatestMessage = (props) => {
           )}
           <span
             className={
-              latestMessage.to_check
-                ? "material-icons to-check"
-                : "material-icons done"
+              user.to_check ? "material-icons to-check" : "material-icons done"
             }
           >
             announcement
           </span>
         </div>
         <div className="text">{text}</div>
-        <div className="line-user-id">{latestMessage.line_user_id}</div>
+        <div className="line-user-id">{user.line_user_id}</div>
       </Link>
     </div>
   );
 };
 
-export default LatestMessage;
+export default User;

@@ -2,26 +2,25 @@ import config from "../config";
 
 const url = config.url;
 
-export const fetchLatestMessages = (dispatch) => {
-  fetch(`${url}api/messages/latest`)
-    .then((res) => res.json())
-    .then((data) => {
-      const unreadCounts = {};
-      data.forEach((e) => (unreadCounts[e.line_user_id] = e.unread_count));
-      dispatch({ type: "SET_UNREADCOUNTS", unreadCounts });
-      return data;
-    })
-    .then((data) => {
-      dispatch({
-        type: "SET_LATESTMESSAGES",
-        latestMessages: data,
-      });
-    })
-    .then(() => console.log("SUCCESS - fetchLatestMessages()"))
-    .catch((err) => console.log("ERROR - fetchLatestMessages() - ", err));
+export const createPushMessages = (input, lineUserId) => {
+  const events = [];
+  events[0] = {
+    type: "message",
+    replyToken: "_",
+    source: {
+      userId: lineUserId,
+      type: "edy",
+    },
+    message: {
+      id: "_",
+      type: "text",
+      text: input,
+    },
+  };
+  return events;
 };
 
-export const fetchUserMessages = async (dispatch, lineUserId) => {
+export const fetchMessages = async (dispatch, lineUserId) => {
   if (!lineUserId) return [];
   await fetch(`${url}api/users/${lineUserId}/messages`)
     .then((res) => res.json())
@@ -41,26 +40,27 @@ export const fetchUserMessages = async (dispatch, lineUserId) => {
         inline: "nearest",
       });
     })
-    .then(() => console.log("SUCCESS - fetchUserMessages()"))
-    .catch((err) => console.log("ERROR - fetchUserMessages() - ", err));
+    .then(() => console.log("SUCCESS - fetchMessages()"))
+    .catch((err) => console.log("ERROR - fetchMessages() - ", err));
 };
 
-export const createPushMessages = (input, lineUserId) => {
-  const events = [];
-  events[0] = {
-    type: "message",
-    replyToken: "_",
-    source: {
-      userId: lineUserId,
-      type: "edy",
-    },
-    message: {
-      id: "_",
-      type: "text",
-      text: input,
-    },
-  };
-  return events;
+export const fetchUsers = (dispatch) => {
+  fetch(`${url}api/users`)
+    .then((res) => res.json())
+    .then((data) => {
+      const unreadCounts = {};
+      data.forEach((e) => (unreadCounts[e.line_user_id] = e.unread_count));
+      dispatch({ type: "SET_UNREADCOUNTS", unreadCounts });
+      return data;
+    })
+    .then((data) => {
+      dispatch({
+        type: "SET_USERS",
+        users: data,
+      });
+    })
+    .then(() => console.log("SUCCESS - fetchUsers()"))
+    .catch((err) => console.log("ERROR - fetchUsers() - ", err));
 };
 
 export const insertMessages = async (events) => {
@@ -75,6 +75,14 @@ export const insertMessages = async (events) => {
     .catch((err) => console.log("ERROR - insertMessage() - ", err));
 };
 
+export const readMessages = (lineUserId) => {
+  return fetch(`${url}api/users/${lineUserId}/messages/read`, {
+    method: "PATCH",
+  })
+    .then(() => console.log("SUCCESS - readMessages()"))
+    .catch((err) => console.log("ERROR - readMessages() - ", err));
+};
+
 export const sendMessages = (events, lineUserId) => {
   fetch(`${url}api/users/${lineUserId}/messages`, {
     method: "POST",
@@ -87,12 +95,13 @@ export const sendMessages = (events, lineUserId) => {
     .catch((err) => console.log("ERROR - sendMessage() - ", err));
 };
 
-export const readMessages = (lineUserId) => {
-  return fetch(`${url}api/users/${lineUserId}/messages/read`, {
+export const toggleToCheck = (lineUserId, toCheck) => {
+  return fetch(`${url}api/users/${lineUserId}/check`, {
     method: "PATCH",
+    body: JSON.stringify({ toCheck }),
   })
-    .then(() => console.log("SUCCESS - readMessages()"))
-    .catch((err) => console.log("ERROR - readMessages() - ", err));
+    .then(() => console.log("SUCCESS - toggleToCheck()"))
+    .catch((err) => console.log("ERROR - toggleToCheck() - ", err));
 };
 
 export const updateImageUrls = () => {
@@ -101,13 +110,4 @@ export const updateImageUrls = () => {
   })
     .then(() => console.log("SUCCESS - updateImageUrls()"))
     .catch((err) => console.log("ERROR - updateImageUrls()", err));
-};
-
-export const toggleToCheck = (lineUserId, toCheck) => {
-  return fetch(`${url}api/users/${lineUserId}/check`, {
-    method: "PATCH",
-    body: JSON.stringify({ toCheck }),
-  })
-    .then(() => console.log("SUCCESS - toggleToCheck()"))
-    .catch((err) => console.log("ERROR - toggleToCheck() - ", err));
 };

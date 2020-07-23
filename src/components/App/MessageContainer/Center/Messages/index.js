@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
 import config from "../../../../../config";
 import {
-  fetchLatestMessages,
-  fetchUserMessages,
+  fetchUsers,
+  fetchMessages,
   readMessages,
   updateImageUrls,
 } from "../../../../../utils";
@@ -17,8 +17,8 @@ const socket = io.connect(config.url);
 const updateUserMessages = (dispatch, selectedLineUserId) => {
   updateImageUrls().then(() => {
     readMessages(selectedLineUserId).then(() => {
-      fetchUserMessages(dispatch, selectedLineUserId).then(() =>
-        fetchLatestMessages(dispatch)
+      fetchMessages(dispatch, selectedLineUserId).then(() =>
+        fetchUsers(dispatch)
       );
     });
   });
@@ -31,7 +31,7 @@ const Messages = () => {
 
   useEffect(() => {
     if (!selectedLineUserId) {
-      updateImageUrls().then(() => fetchLatestMessages(dispatch));
+      updateImageUrls().then(() => fetchUsers(dispatch));
     } else {
       updateUserMessages(dispatch, selectedLineUserId);
     }
@@ -44,7 +44,7 @@ const Messages = () => {
       if (selectedLineUserId === data.event.source.userId) {
         updateUserMessages(dispatch, selectedLineUserId);
       } else {
-        updateImageUrls().then(() => fetchLatestMessages(dispatch));
+        updateImageUrls().then(() => fetchUsers(dispatch));
       }
       setTimeout(() => updateImageUrls(), 200);
       setTimeout(() => updateImageUrls(), 2000);

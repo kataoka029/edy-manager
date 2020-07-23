@@ -24,7 +24,7 @@ const Message = (props) => {
         <div className={`message ${className}`}>
           <div className="bubble">
             {imageUrl === "_" ? (
-              <div class="loader">Loading...</div>
+              <div className="loader">Loading...</div>
             ) : (
               <img src={imageUrl} />
             )}
