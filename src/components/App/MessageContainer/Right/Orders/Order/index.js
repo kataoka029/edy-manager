@@ -28,7 +28,7 @@ const Order = () => {
       <div className="row cancel">
         <span className="material-icons">cancel</span>
         <input type="checkbox" id="cancel" />
-        <label for="cancel">キャンセル</label>
+        <label htmlFor="cancel">キャンセル</label>
       </div>
 
       <div className="row button">

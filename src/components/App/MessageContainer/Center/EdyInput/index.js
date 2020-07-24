@@ -25,7 +25,7 @@ const EdyInput = () => {
     await fetchMessages(dispatch, selectedLineUserId);
     fetchUsers(dispatch);
     document.querySelector("textarea.text").value = "";
-    dispatch({ type: "HANDLE_INPUT", input: "" });
+    dispatch({ type: "SET_INPUT", input: "" });
   };
 
   return (
@@ -45,16 +45,14 @@ const EdyInput = () => {
       </div>
       <textarea
         className="text"
-        placeholder="メッセージを入力（「shift」+「enter」で改行）"
-        onChange={(e) =>
-          dispatch({ type: "HANDLE_INPUT", input: e.target.value })
-        }
+        onChange={(e) => dispatch({ type: "SET_INPUT", input: e.target.value })}
         onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey && !e.metaKey) {
             e.preventDefault();
             document.querySelector("a.reply span").click();
           }
         }}
+        placeholder="メッセージを入力（「shift」+「enter」で改行）"
       ></textarea>
     </div>
   );

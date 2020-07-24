@@ -6,13 +6,14 @@ import "./style.scss";
 
 const User = (props) => {
   const user = props.user;
-  const userClass = user.first_name !== "_" ? "user" : "non-user";
   const unreadCounts = useSelector((state) => state.unreadCounts);
   const unreadCount = unreadCounts[user.line_user_id];
+
+  const userClass = user.first_name !== "_" ? "user" : "non-user";
   const userName =
     user.first_name !== "_"
-      ? `${user.user_id} ${user.first_name} ${user.last_name}`
-      : user.profile_name;
+      ? `${user.user_id} ${user.first_name}${user.last_name}`
+      : `${user.user_id} ${user.profile_name}`;
   const text = user.text_type !== "text" ? `<${user.text_type}>` : user.text;
 
   return (
