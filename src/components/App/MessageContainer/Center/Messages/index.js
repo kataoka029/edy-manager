@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
 import config from "../../../../../config";
 import {
+  fetchUser,
   fetchUsers,
   fetchMessages,
   readMessages,
@@ -17,9 +18,10 @@ const socket = io.connect(config.url);
 const updateUserMessages = (dispatch, selectedLineUserId) => {
   updateImageUrls().then(() => {
     readMessages(selectedLineUserId).then(() => {
-      fetchMessages(dispatch, selectedLineUserId).then(() =>
-        fetchUsers(dispatch)
-      );
+      fetchMessages(dispatch, selectedLineUserId).then(() => {
+        fetchUser(dispatch, selectedLineUserId);
+        fetchUsers(dispatch);
+      });
     });
   });
 };

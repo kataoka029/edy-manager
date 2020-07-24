@@ -1,0 +1,88 @@
+div.order {
+  margin: 20px auto;
+  max-width: 240px;
+  padding: 20px 30px;
+
+  * {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  div.row {
+    align-items: center;
+    display: flex;
+    margin-bottom: 8px;
+
+    span.material-icons {
+      font-size: 18px;
+    }
+
+    input {
+      border: none;
+      border-bottom: 1px solid #eeeeee;
+      margin-left: 24px;
+      padding-left: 25px;
+
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: #c4c4c4;
+      }
+    }
+  }
+
+  div.key-datetime-start {
+    input {
+      max-width: 160px;
+    }
+  }
+
+  div.key-datetime-end {
+    input {
+      width: 160px;
+    }
+  }
+
+  div.item {
+    input {
+      width: 157px;
+    }
+  }
+
+  div.refund {
+    input {
+      width: 157px;
+    }
+  }
+
+  div.cancel {
+    input {
+      margin-left: 45px;
+    }
+
+    label {
+      margin-left: 5px;
+    }
+  }
+
+  div.button {
+    margin-bottom: 0;
+    margin-top: 10px;
+
+    button {
+      background-color: #cccccc;
+      border: none;
+      color: #ffffff;
+      cursor: pointer;
+      height: 26px;
+      margin: 0 auto;
+      width: 60px;
+
+      &:hover {
+        background-color: #808284;
+      }
+    }
+  }
+}

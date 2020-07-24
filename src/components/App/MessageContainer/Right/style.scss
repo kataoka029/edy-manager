@@ -1,7 +1,7 @@
 div.right {
   border-left: 1px solid var(--border-color);
-  height: 100vh;
-  padding: 20px 0;
+  height: calc(100vh-50px);
+  overflow: scroll;
   width: 28%;
   z-index: 1;
 

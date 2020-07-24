@@ -44,6 +44,19 @@ export const fetchMessages = async (dispatch, lineUserId) => {
     .catch((err) => console.log("ERROR - fetchMessages() - ", err));
 };
 
+export const fetchUser = (dispatch, lineUserId) => {
+  fetch(`${url}api/users/${lineUserId}`)
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({
+        type: "SET_USER",
+        user: data,
+      });
+    })
+    .then(() => console.log("SUCCESS - fetchUser()"))
+    .catch((err) => console.log("ERROR - fetchUser() - ", err));
+};
+
 export const fetchUsers = (dispatch) => {
   fetch(`${url}api/users`)
     .then((res) => res.json())

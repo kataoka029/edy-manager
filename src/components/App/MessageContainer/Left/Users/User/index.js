@@ -11,15 +11,12 @@ const User = (props) => {
   const unreadCount = unreadCounts[user.line_user_id];
   const userName =
     user.first_name !== "_"
-      ? `${user.first_name} ${user.last_name}`
+      ? `${user.user_id} ${user.first_name} ${user.last_name}`
       : user.profile_name;
   const text = user.text_type !== "text" ? `<${user.text_type}>` : user.text;
 
   return (
-    <div
-      className={props.selected ? "user selected" : "user"}
-      data-user-id={user.userId}
-    >
+    <div className={props.selected ? "user selected" : "user"}>
       <Link to={props.link}>
         <div className="header">
           <span className={`material-icons ${userClass}`}>account_circle</span>

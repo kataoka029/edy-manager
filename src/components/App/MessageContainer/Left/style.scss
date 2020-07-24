@@ -1,6 +1,7 @@
 div.left {
   background-color: #ffffff;
   border-right: 1px solid var(--border-color);
-  height: 100vh;
+  height: calc(100vh-50px);
+  overflow: scroll;
   width: 28%;
 }
