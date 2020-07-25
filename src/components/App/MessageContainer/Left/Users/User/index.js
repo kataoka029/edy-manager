@@ -17,8 +17,8 @@ const User = (props) => {
   const text = user.text_type !== "text" ? `<${user.text_type}>` : user.text;
 
   return (
-    <div className={props.selected ? "user selected" : "user"}>
-      <Link to={props.link}>
+    <Link to={props.link}>
+      <div className={props.selected ? "user selected" : "user"}>
         <div className="header">
           <span className={`material-icons ${userClass}`}>account_circle</span>
           <span className="user-name">{userName}</span>
@@ -37,8 +37,8 @@ const User = (props) => {
         </div>
         <div className="text">{text}</div>
         <div className="line-user-id">{user.line_user_id}</div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 
