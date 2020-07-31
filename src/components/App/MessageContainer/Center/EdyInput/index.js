@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style.scss";
@@ -13,8 +13,9 @@ import {
 
 const EdyInput = () => {
   const dispatch = useDispatch();
-  const messageToPush = useSelector((state) => state.messageToPush);
   const lineUserId = useSelector((state) => state.lineUserId);
+
+  const [messageToPush, setMessageToPush] = useState("");
 
   const pushMessage = async () => {
     if (!messageToPush) return alert("メッセージを入力してください。");
@@ -25,7 +26,7 @@ const EdyInput = () => {
     await fetchMessagesByUser(dispatch, lineUserId);
     fetchUsers(dispatch);
     document.querySelector("textarea.text").value = "";
-    dispatch({ type: "SET_MESSAGE_TOPUSH", messageToPush: "" });
+    setMessageToPush("");
   };
 
   return (
@@ -45,12 +46,7 @@ const EdyInput = () => {
       </div>
       <textarea
         className="text"
-        onChange={(e) =>
-          dispatch({
-            type: "SET_MESSAGE_TOPUSH",
-            messageToPush: e.target.value,
-          })
-        }
+        onChange={(e) => setMessageToPush(e.target.value)}
         onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey && !e.metaKey) {
             e.preventDefault();
@@ -58,6 +54,7 @@ const EdyInput = () => {
           }
         }}
         placeholder="メッセージを入力（「shift」+「enter」で改行）"
+        value={messageToPush}
       ></textarea>
     </div>
   );

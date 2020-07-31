@@ -2,7 +2,6 @@ import { createStore } from "redux";
 
 const initialState = {
   lineUserId: "",
-  messageToPush: "",
   messagesByUser: [],
   ordersByUser: [],
   query: "",
@@ -17,8 +16,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_LINEUSERID":
       return { ...state, lineUserId: action.lineUserId };
-    case "SET_MESSAGE_TOPUSH":
-      return { ...state, messageToPush: action.messageToPush };
     case "SET_MESSAGES_BYUSER":
       return { ...state, messagesByUser: action.messagesByUser };
     case "SET_ORDERS_BYUSER":
