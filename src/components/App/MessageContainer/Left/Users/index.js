@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./style.scss";
-import { fetchUsers, readMessages } from "../../../../../utils";
+import { fetchUsers, readMessagesByUser } from "../../../../../utils";
 import User from "./User";
 
 const Users = () => {
@@ -11,7 +11,7 @@ const Users = () => {
   const query = useSelector((state) => state.query);
   const userFlg = useSelector((state) => state.userFlg);
   const toCheckFlg = useSelector((state) => state.toCheckFlg);
-  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   const userFlgResult = userFlg
     ? users.filter((user) => user.first_name !== "_")
@@ -33,9 +33,9 @@ const Users = () => {
         );
 
   useEffect(() => {
-    if (!selectedLineUserId) return fetchUsers(dispatch);
-    readMessages(selectedLineUserId).then(() => fetchUsers(dispatch));
-  }, [selectedLineUserId]);
+    if (!lineUserId) return fetchUsers(dispatch);
+    readMessagesByUser(lineUserId).then(() => fetchUsers(dispatch));
+  }, [lineUserId]);
 
   return (
     <div className="users">
@@ -45,7 +45,7 @@ const Users = () => {
             user={user}
             key={`user${index}`}
             link={`/messages/${user.line_user_id}`}
-            selected={selectedLineUserId === user.line_user_id ? true : false}
+            selected={lineUserId === user.line_user_id ? true : false}
           />
         );
       })}

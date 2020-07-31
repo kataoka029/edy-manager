@@ -8,15 +8,15 @@ import Right from "./Right";
 
 const MessageContainer = (props) => {
   const dispatch = useDispatch();
-  const selectedLineUserId = props.match.params.lineUserId;
+  const lineUserId = props.match.params.lineUserId;
 
   useEffect(() => {
-    if (!selectedLineUserId) return;
+    if (!lineUserId) return;
     dispatch({
       type: "SET_LINEUSERID",
-      selectedLineUserId,
+      lineUserId,
     });
-  }, [selectedLineUserId]);
+  }, [lineUserId]);
 
   return (
     <div className="message-container">

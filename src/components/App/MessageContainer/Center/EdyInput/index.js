@@ -4,28 +4,28 @@ import { useDispatch, useSelector } from "react-redux";
 import "./style.scss";
 import {
   createPushMessages,
+  fetchMessagesByUser,
   fetchUsers,
-  fetchMessages,
   insertMessages,
-  readMessages,
+  readMessagesByUser,
   sendMessages,
 } from "../../../../../utils";
 
 const EdyInput = () => {
   const dispatch = useDispatch();
-  const input = useSelector((state) => state.input);
-  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
+  const messageToPush = useSelector((state) => state.messageToPush);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   const pushMessage = async () => {
-    if (!input) return alert("メッセージを入力してください。");
-    const events = createPushMessages(input, selectedLineUserId);
-    sendMessages(events, selectedLineUserId);
+    if (!messageToPush) return alert("メッセージを入力してください。");
+    const events = createPushMessages(messageToPush, lineUserId);
+    sendMessages(events, lineUserId);
     await insertMessages(events);
-    readMessages(selectedLineUserId);
-    await fetchMessages(dispatch, selectedLineUserId);
+    readMessagesByUser(lineUserId);
+    await fetchMessagesByUser(dispatch, lineUserId);
     fetchUsers(dispatch);
     document.querySelector("textarea.text").value = "";
-    dispatch({ type: "SET_INPUT", input: "" });
+    dispatch({ type: "SET_MESSAGE_TOPUSH", messageToPush: "" });
   };
 
   return (
@@ -45,7 +45,12 @@ const EdyInput = () => {
       </div>
       <textarea
         className="text"
-        onChange={(e) => dispatch({ type: "SET_INPUT", input: e.target.value })}
+        onChange={(e) =>
+          dispatch({
+            type: "SET_MESSAGE_TOPUSH",
+            messageToPush: e.target.value,
+          })
+        }
         onKeyDown={(e) => {
           if (e.keyCode === 13 && !e.shiftKey && !e.metaKey) {
             e.preventDefault();

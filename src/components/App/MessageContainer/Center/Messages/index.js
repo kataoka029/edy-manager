@@ -4,10 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import "./style.scss";
 import config from "../../../../../config";
 import {
+  fetchOrdersByUser,
   fetchUser,
   fetchUsers,
-  fetchMessages,
-  readMessages,
+  fetchMessagesByUser,
+  readMessagesByUser,
   updateImageUrls,
 } from "../../../../../utils";
 import Message from "./Message";
@@ -15,11 +16,12 @@ import Message from "./Message";
 import io from "socket.io-client";
 const socket = io.connect(config.url);
 
-const updateUserMessages = (dispatch, selectedLineUserId) => {
+const updateUserMessages = (dispatch, lineUserId) => {
   updateImageUrls().then(() => {
-    readMessages(selectedLineUserId).then(() => {
-      fetchMessages(dispatch, selectedLineUserId).then(() => {
-        fetchUser(dispatch, selectedLineUserId);
+    readMessagesByUser(lineUserId).then(() => {
+      fetchMessagesByUser(dispatch, lineUserId).then(() => {
+        fetchOrdersByUser(dispatch, lineUserId);
+        fetchUser(dispatch, lineUserId);
         fetchUsers(dispatch);
       });
     });
@@ -28,23 +30,23 @@ const updateUserMessages = (dispatch, selectedLineUserId) => {
 
 const Messages = () => {
   const dispatch = useDispatch();
-  const messages = useSelector((state) => state.messages);
-  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
+  const messagesByUser = useSelector((state) => state.messagesByUser);
+  const lineUserId = useSelector((state) => state.lineUserId);
 
   useEffect(() => {
-    if (!selectedLineUserId) {
+    if (!lineUserId) {
       updateImageUrls().then(() => fetchUsers(dispatch));
     } else {
-      updateUserMessages(dispatch, selectedLineUserId);
+      updateUserMessages(dispatch, lineUserId);
     }
-  }, [selectedLineUserId]);
+  }, [lineUserId]);
 
   useEffect(() => {
     socket.on("refetch", (data) => {
       console.log("UID - ", data.event.source.userId);
 
-      if (selectedLineUserId === data.event.source.userId) {
-        updateUserMessages(dispatch, selectedLineUserId);
+      if (lineUserId === data.event.source.userId) {
+        updateUserMessages(dispatch, lineUserId);
       } else {
         updateImageUrls().then(() => fetchUsers(dispatch));
       }
@@ -55,11 +57,11 @@ const Messages = () => {
     return () => {
       socket.off("refetch");
     };
-  }, [selectedLineUserId]);
+  }, [lineUserId]);
 
   return (
     <div className="messages">
-      {messages.map((message, index) => (
+      {messagesByUser.map((message, index) => (
         <Message message={message} key={`message${index}`} />
       ))}
     </div>

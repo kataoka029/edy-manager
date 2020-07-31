@@ -2,15 +2,17 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./style.scss";
-import { fetchUsers, fetchMessages, toggleToCheck } from "../../../../../utils";
+import {
+  fetchMessagesByUser,
+  fetchUsers,
+  toggleToCheckByUser,
+} from "../../../../../utils";
 
 const Status = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users);
-  const selectedLineUserId = useSelector((state) => state.selectedLineUserId);
-  const targetMessage = users.find(
-    (user) => user.line_user_id === selectedLineUserId
-  );
+  const lineUserId = useSelector((state) => state.lineUserId);
+  const targetMessage = users.find((user) => user.line_user_id === lineUserId);
   const toCheck = targetMessage ? targetMessage.to_check : 0;
   const className = toCheck ? "to-check" : "done";
 
@@ -19,8 +21,8 @@ const Status = () => {
       <span
         className="material-icons refresh"
         onClick={() => {
-          fetchMessages(dispatch, selectedLineUserId);
-          setTimeout(() => fetchMessages(dispatch, selectedLineUserId), 2000);
+          fetchMessagesByUser(dispatch, lineUserId);
+          setTimeout(() => fetchMessagesByUser(dispatch, lineUserId), 2000);
         }}
       >
         refresh
@@ -28,7 +30,7 @@ const Status = () => {
       <span
         className={`material-icons ${className}`}
         onClick={() => {
-          toggleToCheck(selectedLineUserId).then(() =>
+          toggleToCheckByUser(lineUserId).then(() =>
             setTimeout(() => fetchUsers(dispatch), 200)
           );
         }}

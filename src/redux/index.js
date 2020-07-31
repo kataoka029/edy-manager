@@ -1,27 +1,28 @@
 import { createStore } from "redux";
 
 const initialState = {
-  input: "",
-  users: [],
-  messages: [],
+  lineUserId: "",
+  messageToPush: "",
+  messagesByUser: [],
+  ordersByUser: [],
   query: "",
-  selectedLineUserId: "",
   toCheckFlg: false,
   unreadCounts: {},
   user: {},
   userFlg: false,
+  users: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_MESSAGE":
-      return { ...state, messages: [...state.messages, action.message] };
-    case "SET_INPUT":
-      return { ...state, input: action.input };
     case "SET_LINEUSERID":
-      return { ...state, selectedLineUserId: action.selectedLineUserId };
-    case "SET_MESSAGES":
-      return { ...state, messages: action.messages };
+      return { ...state, lineUserId: action.lineUserId };
+    case "SET_MESSAGE_TOPUSH":
+      return { ...state, messageToPush: action.messageToPush };
+    case "SET_MESSAGES_BYUSER":
+      return { ...state, messagesByUser: action.messagesByUser };
+    case "SET_ORDERS_BYUSER":
+      return { ...state, ordersByUser: action.ordersByUser };
     case "SET_QUERY":
       return { ...state, query: action.query };
     case "SET_TOCHECKFLG":

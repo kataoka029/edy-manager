@@ -20,14 +20,14 @@ export const createPushMessages = (input, lineUserId) => {
   return events;
 };
 
-export const fetchMessages = async (dispatch, lineUserId) => {
+export const fetchMessagesByUser = async (dispatch, lineUserId) => {
   if (!lineUserId) return [];
   await fetch(`${url}api/users/${lineUserId}/messages`)
     .then((res) => res.json())
     .then((data) => {
       dispatch({
-        type: "SET_MESSAGES",
-        messages: data,
+        type: "SET_MESSAGES_BYUSER",
+        messagesByUser: data,
       });
     })
     .then(() => {
@@ -40,8 +40,22 @@ export const fetchMessages = async (dispatch, lineUserId) => {
         inline: "nearest",
       });
     })
-    .then(() => console.log("SUCCESS - fetchMessages()"))
-    .catch((err) => console.log("ERROR - fetchMessages() - ", err));
+    .then(() => console.log("SUCCESS - fetchMessagesByUser()"))
+    .catch((err) => console.log("ERROR - fetchMessagesByUser() - ", err));
+};
+
+export const fetchOrdersByUser = async (dispatch, lineUserId) => {
+  if (!lineUserId) return [];
+  await fetch(`${url}api/users/${lineUserId}/orders`)
+    .then((res) => res.json())
+    .then((data) => {
+      dispatch({
+        type: "SET_ORDERS_BYUSER",
+        ordersByUser: data,
+      });
+    })
+    .then(() => console.log("SUCCESS - fetchOrdersByUser()"))
+    .catch((err) => console.log("ERROR - fetchOrdersByUser() - ", err));
 };
 
 export const fetchUser = (dispatch, lineUserId) => {
@@ -88,12 +102,12 @@ export const insertMessages = async (events) => {
     .catch((err) => console.log("ERROR - insertMessage() - ", err));
 };
 
-export const readMessages = (lineUserId) => {
+export const readMessagesByUser = (lineUserId) => {
   return fetch(`${url}api/users/${lineUserId}/messages/read`, {
     method: "PATCH",
   })
-    .then(() => console.log("SUCCESS - readMessages()"))
-    .catch((err) => console.log("ERROR - readMessages() - ", err));
+    .then(() => console.log("SUCCESS - readMessagesByUser()"))
+    .catch((err) => console.log("ERROR - readMessagesByUser() - ", err));
 };
 
 export const sendMessages = (events, lineUserId) => {
@@ -108,13 +122,13 @@ export const sendMessages = (events, lineUserId) => {
     .catch((err) => console.log("ERROR - sendMessage() - ", err));
 };
 
-export const toggleToCheck = (lineUserId, toCheck) => {
+export const toggleToCheckByUser = (lineUserId, toCheck) => {
   return fetch(`${url}api/users/${lineUserId}/check`, {
     method: "PATCH",
     body: JSON.stringify({ toCheck }),
   })
-    .then(() => console.log("SUCCESS - toggleToCheck()"))
-    .catch((err) => console.log("ERROR - toggleToCheck() - ", err));
+    .then(() => console.log("SUCCESS - toggleToCheckByUser()"))
+    .catch((err) => console.log("ERROR - toggleToCheckByUser() - ", err));
 };
 
 export const updateImageUrls = () => {
