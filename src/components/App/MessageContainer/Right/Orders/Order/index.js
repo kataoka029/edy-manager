@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import "./style.scss";
-
-const calculateDate = (timestamp) => {
-  const date = new Date(timestamp);
-  return `${date.getFullYear()}-${("0" + (date.getMonth() + 1)).slice(-2)}-${(
-    "0" + date.getDate()
-  ).slice(-2)}T${("0" + date.getHours()).slice(-2)}:${(
-    "0" + date.getMinutes()
-  ).slice(-2)}`;
-};
+import { calculateDate } from "../../../../../../utils";
 
 const Order = (props) => {
   const order = props.order;
