@@ -2,7 +2,7 @@
 edy-managerは、渋谷にある貸衣装店Empty Dressyの管理システムとして開発中のアプリケーションのクライアントサイドです。
 
 ## デモ
-
+![demo](/img/demo.gif)
 
 ## Empty Dressy
 
